@@ -48,7 +48,6 @@ OK
 printf "Compilation SYS0 (5 First chars)"
 gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o memset_test -D SYS0
 OK
-printf "Comparaison"
 cmp_cmd "Comparaison" "$(./memset_test)" "$(./ft_memset_test)"
 printf "Compilation FT1 (All chars)"
 gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o ft_memset_test -D FT1

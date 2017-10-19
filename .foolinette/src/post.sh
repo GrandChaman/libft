@@ -33,6 +33,8 @@ fi
 
 rm -f ft_memset_test
 rm -f memset_test
+rm -f ft_bzero
+rm -f bzero
 
 #END METHOD
 trap : 0
