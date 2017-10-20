@@ -11,7 +11,6 @@ cd $2
 cd ..
 make fclean
 make
-make clean
 
 trap : 0
 exit 0

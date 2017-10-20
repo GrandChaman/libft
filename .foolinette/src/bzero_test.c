@@ -33,4 +33,5 @@ int main()
 		else if (test1[i] > 31)
 			printf("%c", test1[i]);
 	}
+	free(test1);
 }

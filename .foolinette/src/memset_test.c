@@ -41,4 +41,5 @@ int main()
 	exit(0);
 	#endif
 	printf("%s", test1);
+	free(test1);
 }

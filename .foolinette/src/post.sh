@@ -35,7 +35,12 @@ rm -f ft_memset_test
 rm -f memset_test
 rm -f ft_bzero
 rm -f bzero
+rm -f ft_memcpy_test
+rm -f memcpy_test
 
+cd $DIR
+cd ..
+make fclean
 #END METHOD
 trap : 0
 exit $EXITCODE
