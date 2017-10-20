@@ -41,7 +41,8 @@ rm -f ft_memccpy_test
 rm -f memccpy_test
 rm -f ft_memmove_test
 rm -f memmove_test
-
+rm -f ft_memchr_test
+rm -f memchr_test
 cd $DIR
 cd ..
 make fclean
