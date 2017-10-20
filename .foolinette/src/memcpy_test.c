@@ -11,7 +11,7 @@ int main()
 	tmp = NULL;
 	if(!(test1 = (char*)malloc(sizeof(char) * 12)))
 		exit(10);
-	ft_bzero(test1, 12);
+	bzero(test1, 12);
 	#ifdef FT0
 	ft_memcpy(test1, "Hello World", (unsigned int)12);
 	#elif SYS0
