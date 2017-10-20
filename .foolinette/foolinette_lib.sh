@@ -19,26 +19,26 @@ cmp_cmd() {
 	echo $1
 	if [[ "$2" == "$3"  ]]
 	then
-		printf "${2:0:100}"
+		printf "%s" "${2:0:100}"
 		if [[ ${2:100:101} != "" ]]
 		then
 			printf "..."
 		fi
 		printf " == "
-		printf "${3:0:100}"
+		printf "%s" "${3:0:100}"
 		if [[ ${3:100:101} != "" ]]
 		then
 			printf "..."
 		fi
 		OK
 	else
-		printf "${2:0:100}"
+		printf "%s" "${2:0:100}"
 		if [[ ${2:100:101} != "" ]]
 		then
 			printf "..."
 		fi
 		printf " != "
-		printf "${3:0:100}"
+		printf "%s" "${3:0:100}"
 		if [[ ${3:100:101} != "" ]]
 		then
 			printf "..."

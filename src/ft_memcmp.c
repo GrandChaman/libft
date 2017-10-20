@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 18:37:44 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/20 19:04:57 by bluff            ###   ########.fr       */
+/*   Created: 2017/10/20 19:05:06 by bluff             #+#    #+#             */
+/*   Updated: 2017/10/20 19:40:45 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_memchr(const void* ptr, int ch, size_t count)
+#include <stdio.h>
+int		ft_memcmp(const void* lhs, const void* rhs, size_t count)
 {
-	unsigned char c;
-	unsigned int i;
-	const unsigned char *buf;
+	unsigned int		i;
+	const unsigned char	*fbuf;
+	const unsigned char	*sbuf;
 
-	buf = ptr;
 	i = 0;
-	c = ch;
-	while (i < count && *(buf + i) != c)
+	fbuf = lhs;
+	sbuf = rhs;
+	while (*(fbuf + i) == *(sbuf + i) && i < count)
 		i++;
-	return (*(buf + i) == c ? (void*)buf + i : NULL);
+	return ((i == count) ? 0 : *(fbuf + i) - *(sbuf + i));
 }
