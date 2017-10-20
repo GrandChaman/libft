@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/20 15:22:33 by bluff            ###   ########.fr       */
+/*   Created: 2017/10/20 15:13:15 by bluff             #+#    #+#             */
+/*   Updated: 2017/10/20 16:00:06 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-#include <string.h>
+#include "libft.h"
+#include <stdio.h>
 
-void	ft_bzero(void *s, size_t n);
-void	*ft_memset(void *dest, int ch, size_t count);
-void	*ft_memcpy(void *dest, const void *src, size_t count);
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n);
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+{
+	unsigned char lc;
 
-#endif
+	lc = c;
+	while (n-- && *((unsigned char*)src - 1) != lc)
+		*((unsigned char*)dest++) = *((unsigned char*)src++);
+	if (*((unsigned char*)src - 1) == lc)
+		return (((unsigned char*)dest));
+	else
+		return (NULL);
+}
