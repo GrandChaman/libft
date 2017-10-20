@@ -59,3 +59,21 @@ then
 else
 	KO
 fi
+abort()
+{
+	TMPL=$?
+	if [ $TMPL -eq 139 ]; then
+    echo "${RED}===> SEGFAULT !${NC}"
+	exit $TMPL
+	fi
+	if [ $TMPL -eq 134 ]; then
+    echo "${RED}===> SIGTERM !${NC}"
+	exit $TMPL
+	fi
+	if [ $TMPL != "0" ]; then
+    exit $TMPL
+	fi
+
+}
+trap 'abort' CHLD
+set -bm

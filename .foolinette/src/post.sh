@@ -51,6 +51,8 @@ rm -f ft_strcpy_test
 rm -f strcpy_test
 rm -f ft_strdup_test
 rm -f strdup_test
+rm -f ft_strncpy_test
+rm -f strncpy_test
 cd $DIR
 cd ..
 make fclean
