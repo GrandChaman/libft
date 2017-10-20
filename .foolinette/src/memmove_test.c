@@ -52,6 +52,21 @@ int main()
 	len = 5;
 	strcpy(test1, "Hello World");
 	memmove(test1 + 1, test1, len); //DEST > SRC
+	#elif FT5
+	len = 5;
+	strcpy(test1, "Hello World");
+	tmp = ft_memmove(test1 + 1, test1, len);
+	test1 = ft_memmove(test1 + 1, test1, len);
+	if (tmp == test1)
+	{
+		printf("OK");
+		exit(0);
+	}
+	else
+	{
+		printf("KO");
+		exit(1);
+	}
 	#endif
 	for(int i = 0; i < 12; i++)
 	{

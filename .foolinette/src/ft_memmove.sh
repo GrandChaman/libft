@@ -44,6 +44,10 @@ printf "Compilation SYS4 (Copy with dest > src)"
 gcc $CFLAG $1/memmove_test.c ft_memmove.c  -I../include -o memmove_test -D SYS4
 OK
 cmp_cmd "Comparaison" "$(./ft_memmove_test)" "$(./memmove_test)"
+printf "Compilation FT5 (Check return value)"
+gcc $CFLAG $1/memmove_test.c ft_memmove.c  -I../include -o ft_memmove_test -D FT5
+OK
+cmp_cmd "Comparaison" "$(./ft_memmove_test)" "OK"
 #END METHOD
 trap : 0
 
