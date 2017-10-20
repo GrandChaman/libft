@@ -6,13 +6,13 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/10/19 20:26:00 by bluff            ###   ########.fr        #
+#    Updated: 2017/10/20 20:39:31 by bluff            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_FOLDER = src/
 SRCS_NAMES = ft_memset.c
-INCLUDE = include
+INCLUDE = includes
 INCLUDE_FLAG = -I $(INCLUDE)
 CFLAGS = -c -Wall -Wextra -Werror -O3
 CC = gcc

@@ -43,28 +43,28 @@ fi
 # BEGIN METHOD
 
 printf "Compilation FT0 (5 First chars)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o ft_memset_test -D FT0
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o ft_memset_test -D FT0
 OK
 printf "Compilation SYS0 (5 First chars)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o memset_test -D SYS0
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o memset_test -D SYS0
 OK
 cmp_cmd "Comparaison" "$(./memset_test)" "$(./ft_memset_test)"
 printf "Compilation FT1 (All chars)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o ft_memset_test -D FT1
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o ft_memset_test -D FT1
 OK
 printf "Compilation SYS1 (All chars)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o memset_test -D SYS1
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o memset_test -D SYS1
 OK
 cmp_cmd "Comparaison" "$(./memset_test)" "$(./ft_memset_test)"
 printf "Compilation FT2 (Zero char)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o ft_memset_test -D FT2
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o ft_memset_test -D FT2
 OK
 printf "Compilation SYS2 (Zero char)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o memset_test -D SYS2
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o memset_test -D SYS2
 OK
 cmp_cmd "Comparaison" "$(./memset_test)" "$(./ft_memset_test)"
 printf "Compilation FT3vsSYS3 (Is the return value correct ?)"
-gcc $CFLAG $1/memset_test.c ft_memset.c -I../include -o ft_memset_test -D FT3
+gcc $CFLAG $1/memset_test.c ft_memset.c -I../includes -o ft_memset_test -D FT3
 OK
 cmp_cmd "Comparaison" "$(./ft_memset_test)" "OK"
 #END METHOD
