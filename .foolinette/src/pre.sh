@@ -9,8 +9,7 @@ set -e
 
 cd $2
 cd ..
-make fclean
-make
+make re
 
 trap : 0
 exit 0

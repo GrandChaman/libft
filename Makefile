@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/10/20 20:39:31 by bluff            ###   ########.fr        #
+#    Updated: 2017/10/21 16:06:40 by bluff            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,15 @@ LFLAGS = rc
 LIBOPTIMIZER = ranlib
 SRCS = $(addprefix $(SRC_FOLDER), $(SRCS_NAMES))
 OBJS = $(SRCS_NAMES:.c=.o)
-BIN = libft.a
+NAME = libft.a
 
-$(BIN):
+$(NAME):
 	$(CC) $(CFLAGS) $(SRCS) $(INCLUDE_FLAG)
-	$(LN) $(LFLAGS) $(BIN) $(OBJS)
-	$(LIBOPTIMIZER) $(BIN)
-all: $(BIN)
+	$(LN) $(LFLAGS) $(NAME) $(OBJS)
+	$(LIBOPTIMIZER) $(NAME)
+all: $(NAME)
 clean:
 	rm -f $(OBJS)
 fclean: clean
-	rm -f $(BIN)
+	rm -f $(NAME)
+re: fclean all
