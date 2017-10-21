@@ -1,12 +1,12 @@
 #!/bin/sh
-source ../foolinette_lib.sh
+source ./foolinette_lib.sh
 # BEGIN METHOD
 
 printf "Compilation FT0 (get (ft_)strncpy of argv[2])"
-gcc $CFLAG $1/strncpy_test.c ft_strncpy.c -I../includes -o ft_strncpy_test -D FT0
+gcc $CFLAG $CURR/strncpy_test.c ft_strncpy.c -I $DIR -o ft_strncpy_test -D FT0
 OK
 printf "Compilation SYS0 (get (ft_)strncpy of argv[2])"
-gcc $CFLAG $1/strncpy_test.c ft_strncpy.c -I../includes -o strncpy_test -D SYS0
+gcc $CFLAG $CURR/strncpy_test.c ft_strncpy.c -I $DIR -o strncpy_test -D SYS0
 OK
 TARG0="Hello World"
 TARG1="15"

@@ -2,7 +2,7 @@
 CURR=$1
 DIR=$2
 CFLAG='-Wall -Wextra -Werror'
-CFLAG_OPTI='-Wall -Wextra -Werror -O3'
+CFLAG_OPTI='-Wall -Wextra -Werror -I $DIR -o3'
 CFLAG_O='-c -Wall -Wextra -Werror'
 cd $DIR
 GREEN='\033[0;32m'

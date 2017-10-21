@@ -59,8 +59,6 @@ rm -f ft_strcat_test
 rm -f strcat_test
 rm -f ft_strncat_test
 rm -f strncat_test
-cd $DIR
-cd ..
 make fclean
 #END METHOD
 trap : 0
