@@ -5,16 +5,16 @@
 
 int main(int argc, const char **argv)
 {
-	if (argc != 2)
+	if (argc != 4)
 		return 1;
-	char test[25];
+	char test[strlen(argv[1])];
 	unsigned long res;
-	strcpy(test, "Bamboozled");
+	strcpy(test, argv[1]);
 	#ifdef FT0
-	res = ft_strlcat(test, argv[1], 25);
+	res = ft_strlcat(test, argv[2], atoi(argv[3]));
 	printf("%lu => %s", res, test);
 	#elif SYS0
-	res = strlcat(test, argv[1], 25);
+	res = strlcat(test, argv[2], atoi(argv[3]));
 	printf("%lu => %s", res, test);
 	#endif
 }
