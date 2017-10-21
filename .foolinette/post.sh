@@ -63,6 +63,8 @@ rm -f ft_strchr_test
 rm -f strchr_test
 rm -f ft_strrchr_test
 rm -f strrchr_test
+rm -f ft_strstr_test
+rm -f strstr_test
 make fclean
 #END METHOD
 trap : 0
