@@ -70,10 +70,6 @@ abort()
     echo "${RED}===> SIGTERM !${NC}"
 	exit $TMPL
 	fi
-	if [ $TMPL != "0" ]; then
-    exit $TMPL
-	fi
-
 }
 trap 'abort' CHLD
-set -bm
+set -ebm
