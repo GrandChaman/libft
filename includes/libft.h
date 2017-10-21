@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/21 13:12:17 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/21 15:47:08 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strdup(const char *str);
 char	*ft_strncpy(char *dest, const char *src, size_t count);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+char	*ft_strcat(char *dest, const char *src);
 
 #endif
