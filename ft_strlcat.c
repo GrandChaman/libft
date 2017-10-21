@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 12:56:06 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/21 13:55:50 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/21 18:07:01 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,19 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 
 	i = ft_strlen(dst);
 	res = i;
+	if (i > size)
+	{
+		res = size;
+		size = i;
+	}
 	ii = 0;
+	if (size <= 0)
+		return (res + ft_strlen(src));
 	while (src[ii] && i + ii < size - 1)
 	{
 		dst[i + ii] = src[ii];
 		ii++;
 	}
-	dst[i + ii + 1] = '\0';
-	return (i + ft_strlen(src));
+	dst[i + ii] = '\0';
+	return (res + ft_strlen(src));
 }
