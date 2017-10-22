@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:34:24 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 17:38:02 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/22 18:16:49 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft_strnstr(const char* str, const char* substr, size_t count)
 	while (str[i] && i < count)
 	{
 		ii = 0;
-		while (substr[ii] == str[i + ii] && substr[ii] && str[i + ii])
+		while (substr[ii] == str[i + ii] && substr[ii] &&
+			str[i + ii] && i + ii < count)
 			ii++;
 		if (!substr[ii])
 			return ((char*)str + i);
