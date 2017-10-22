@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 01:11:41 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/22 17:31:44 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	*ft_strchr(const char *str, int ch);
 char	*ft_strrchr(const char *str, int ch);
 char	*ft_strstr(const char* str, const char* substr);
 int		ft_strcmp(const char *lhs, const char *rhs);
+int		ft_strncmp(const char *lhs, const char *rhs, size_t count);
 
 #endif
