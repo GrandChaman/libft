@@ -73,6 +73,7 @@ rm -f ft_strnstr_test
 rm -f strnstr_test
 rm -f ft_atoi_test
 rm -f atoi_test
+rm -f ft_isalpha_test
 make fclean
 #END METHOD
 trap : 0

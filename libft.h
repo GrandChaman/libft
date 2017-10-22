@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 17:54:59 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/22 19:10:21 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@ int		ft_strncmp(const char *lhs, const char *rhs, size_t count);
 char	*ft_strnstr(const char* str, const char* substr, size_t count);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int ch);
-
+int		ft_isalpha(int c);
+int		ft_isalnum(int c);
+int		ft_isascii(int c);
+int		ft_isprint(int c);
+int		ft_toupper(int c);
 #endif
