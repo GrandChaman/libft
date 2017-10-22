@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 20:33:10 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 23:40:20 by bluff            ###   ########.fr       */
+/*   Created: 2017/10/22 23:40:32 by bluff             #+#    #+#             */
+/*   Updated: 2017/10/23 00:04:11 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void ft_putchar(char c)
+void ft_putstr_fd(const char *s, int fd)
 {
-	ft_putchar_fd(c, 1);
+	if (s)
+		write(fd, s, ft_strlen(s));
 }
