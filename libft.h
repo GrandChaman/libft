@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 23:52:26 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/26 12:24:27 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr(const char *s);
 void	ft_putnbr(int n);
 void 	ft_putendl(const char *s);
+char	**ft_strsplit(char const *s, char c);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
 
 #endif
