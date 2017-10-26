@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/10/22 23:53:30 by bluff            ###   ########.fr        #
+#    Updated: 2017/10/26 12:54:01 by bluff            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ ft_strncpy.c ft_strnstr.c ft_strrchr.c ft_strstr.c ft_isalnum.c ft_isalpha.c \
 ft_isascii.c ft_isprint.c ft_tolower.c ft_toupper.c ft_memalloc.c ft_memdel.c \
 ft_strdel.c ft_strnew.c ft_putchar.c ft_strclr.c ft_strequ.c ft_strnequ.c \
 ft_putchar_fd.c ft_putchar.c ft_putendl_fd.c ft_putendl.c ft_putnbr_fd.c \
-ft_putnbr.c ft_putstr_fd.c ft_putstr.c
+ft_putnbr.c ft_putstr_fd.c ft_putstr.c ft_strsub.c ft_strsplit.c
 CFLAGS = -c -Wall -Wextra -Werror -O3
 CC = gcc
 LN = ar

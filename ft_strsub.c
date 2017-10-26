@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 12:17:35 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/26 12:49:08 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/26 12:55:48 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	unsigned int i;
 
 	i = -1;
+	if (!s)
+		return (NULL);
 	if (!(res = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	while (++i < len)

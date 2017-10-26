@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 10:20:50 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/26 12:50:42 by bluff            ###   ########.fr       */
+/*   Updated: 2017/10/26 12:57:47 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	**ft_strsplit(const char *s, char c)
 	char	**res;
 	int		nb_words;
 
+	if (!s)
+		return (NULL);
 	nb_words = count_words(s, c);
 	if (!(res = (char**)malloc(sizeof(char*) * (nb_words + 1))))
 		return (NULL);
