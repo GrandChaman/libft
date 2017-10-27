@@ -75,6 +75,7 @@ rm -f ft_atoi_test
 rm -f atoi_test
 rm -f ft_isalpha_test
 rm -f ft_strsplit_test
+rm -f ft_stritoa_test
 make fclean
 #END METHOD
 trap : 0
