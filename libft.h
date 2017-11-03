@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/04 00:07:13 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/04 00:31:35 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,24 @@ void	btree_insert_data(t_btree **root, void *item,
 int	btree_level_count(t_btree *root);
 void	*btree_search_item(t_btree *root, void *data_ref,
 	int (*cmpf)(void *, void *));
+int	ft_any(char **tab, int (*f)(char*));
+int	ft_count_if(char **tab, int (*f)(char*));
+int	ft_find_next_prime(int nb);
+void	ft_foreach(int *tab, int length, void (*f)(int));
+int	ft_is_prime(int nb);
+int	ft_is_sort(int *tab, int length, int (*f)(int, int));
+t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
+t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)());
+void	ft_list_foreach_if(t_list *begin_list,
+	void (*f)(void *), void *data_ref, int (*cmp)());
+void	ft_list_foreach(t_list *begin_list, void (*f)(void *));
+t_list	*ft_list_last(t_list *begin_list);
+void	ft_list_merge(t_list **begin_list1, t_list *begin_list2);
+void	ft_list_push_back(t_list **begin_list, void *data);
+void	ft_list_push_front(t_list **begin_list, void *data);
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
+void	ft_list_reverse(t_list **begin_list);
+int	ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 
 #endif

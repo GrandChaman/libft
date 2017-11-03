@@ -6,10 +6,14 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/10/31 18:14:09 by bluff            ###   ########.fr        #
+#    Updated: 2017/11/04 00:22:40 by bluff            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+define \n
+
+
+endef
 SRCS = ft_atoi.c ft_bzero.c ft_isdigit.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 ft_memcpy.c ft_memmove.c ft_memset.c ft_strcat.c ft_strchr.c ft_strcmp.c \
 ft_strcpy.c ft_strdup.c ft_strlcat.c ft_strlen.c ft_strncat.c ft_strncmp.c \
@@ -27,9 +31,8 @@ LFLAGS = rc
 LIBOPTIMIZER = ranlib
 OBJS = $(SRCS:.c=.o)
 NAME = libft.a
-
 $(NAME):
-	$(CC) $(CFLAGS) $(SRCS)
+	$(foreach SRC,$(SRCS),$(CC) $(CFLAGS) $(SRC)${\n})
 	$(LN) $(LFLAGS) $(NAME) $(OBJS)
 	$(LIBOPTIMIZER) $(NAME)
 all: $(NAME)
