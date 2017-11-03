@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/01 17:24:20 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/04 00:07:13 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct			s_btree {
+	struct s_btree		*parent;
+	struct s_btree		*right;
+	struct s_btree		*left;
+	void				*item;
+}						t_btree;
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *dest, int ch, size_t count);
@@ -78,5 +85,16 @@ void	ft_lstdel(t_list **alst, void(*del)(void*, size_t));
 void	ft_lstadd(t_list **alst, t_list *new);
 void	ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 t_list*		ft_lstmap(t_list *lst, t_list* (*f)(t_list *elem));
+void	btree_apply_by_level(t_btree *root,
+	void (*applyf)(void *item, int current_level, int is_first_elem));
+t_btree		*btree_create_node(void *item);
+void	btree_apply_infix(t_btree *root, void (*applyf)(void *));
+void	btree_apply_prefix(t_btree *root, void (*applyf)(void *));
+void	btree_apply_suffix(t_btree *root, void (*applyf)(void *));
+void	btree_insert_data(t_btree **root, void *item,
+	int (*cmpf)(void *, void *));
+int	btree_level_count(t_btree *root);
+void	*btree_search_item(t_btree *root, void *data_ref,
+	int (*cmpf)(void *, void *));
 
 #endif
