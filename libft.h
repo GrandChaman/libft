@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/04 00:56:20 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/04 16:12:28 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ int	ft_isuppercase(char *str);
 char	*ft_strrev(char *str);
 void	ft_swap(int *a, int *b);
 void	ft_print_memory(const void *addr, size_t size);
+int		ft_iswhitespace(int ch);
+int ft_atoi_base(const char *nb, const char *base);
 
 #endif

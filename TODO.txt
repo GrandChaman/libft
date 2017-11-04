@@ -1,3 +1,2 @@
-ft_atoi_base
 ft_itoa_base
 btree_search_item //TO TEST
