@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_last.c                                     :+:      :+:    :+:   */
+/*   ft_islowercase.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 11:00:42 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:29:07 by bluff            ###   ########.fr       */
+/*   Created: 2017/11/04 00:39:52 by bluff             #+#    #+#             */
+/*   Updated: 2017/11/04 00:39:53 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
-
-t_list	*ft_list_last(t_list *begin_list)
+int	ft_islowercase(char *str)
 {
-	if (begin_list == NULL)
-		return (NULL);
-	while (begin_list->next)
-		begin_list = begin_list->next;
-	return (begin_list);
+	int res;
+	int i;
+
+	i = -1;
+	res = 1;
+	while (str[++i])
+	{
+		if (!(str[i] >= 'a' && str[i] <= 'z'))
+		{
+			res = 0;
+			break ;
+		}
+	}
+	return (res);
 }

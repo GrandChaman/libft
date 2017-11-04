@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
+/*   ft_lst_merge.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 12:16:00 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:27:44 by bluff            ###   ########.fr       */
+/*   Created: 2017/09/14 17:32:30 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:29:19 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
+void	ft_lst_merge(t_list **begin_list1, t_list *begin_list2)
 {
-	if (begin_list == NULL)
+	t_list *curr;
+
+	if (begin_list1 == NULL || begin_list2 == NULL)
 		return ;
-	while (begin_list)
+	curr = *begin_list1;
+	if (!curr)
 	{
-		f(begin_list->data);
-		begin_list = begin_list->next;
+		*begin_list1 = begin_list2;
+		return ;
 	}
+	while (curr->next)
+		curr = curr->next;
+	curr->next = begin_list2;
 }

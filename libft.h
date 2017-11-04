@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/04 00:31:35 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/04 00:56:20 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,28 @@ int	ft_find_next_prime(int nb);
 void	ft_foreach(int *tab, int length, void (*f)(int));
 int	ft_is_prime(int nb);
 int	ft_is_sort(int *tab, int length, int (*f)(int, int));
-t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
-t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)());
-void	ft_list_foreach_if(t_list *begin_list,
+t_list	*ft_lst_at(t_list *begin_list, unsigned int nbr);
+t_list	*ft_lst_find(t_list *begin_list, void *data_ref, int (*cmp)());
+void	ft_lst_foreach_if(t_list *begin_list,
 	void (*f)(void *), void *data_ref, int (*cmp)());
-void	ft_list_foreach(t_list *begin_list, void (*f)(void *));
-t_list	*ft_list_last(t_list *begin_list);
-void	ft_list_merge(t_list **begin_list1, t_list *begin_list2);
-void	ft_list_push_back(t_list **begin_list, void *data);
-void	ft_list_push_front(t_list **begin_list, void *data);
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
-void	ft_list_reverse(t_list **begin_list);
-int	ft_list_size(t_list *begin_list);
-void	ft_list_sort(t_list **begin_list, int (*cmp)());
+void	ft_lst_foreach(t_list *begin_list, void (*f)(void *));
+t_list	*ft_lst_last(t_list *begin_list);
+void	ft_lst_merge(t_list **begin_list1, t_list *begin_list2);
+void	ft_lst_push_back(t_list **begin_list, void *data, size_t size);
+void	ft_lst_push_front(t_list **begin_list, void *data, size_t size);
+void	ft_lst_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
+void	ft_lst_reverse(t_list **begin_list);
+int	ft_lst_size(t_list *begin_list);
+void	ft_lst_sort(t_list **begin_list, int (*cmp)());
+int	*ft_map(int *tab, int length, int (*f)(int));
+int	*ft_range(int min, int max);
+int	ft_factorial(int nb);
+int	ft_pow(int nb, int power);
+int	ft_sqrt(int nb);
+int	ft_islowercase(char *str);
+int	ft_isuppercase(char *str);
+char	*ft_strrev(char *str);
+void	ft_swap(int *a, int *b);
+void	ft_print_memory(const void *addr, size_t size);
 
 #endif

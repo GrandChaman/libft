@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach_if.c                               :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 17:07:08 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:27:25 by bluff            ###   ########.fr       */
+/*   Created: 2017/08/31 12:23:57 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:42:14 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_list_foreach_if(t_list *begin_list,
-	void (*f)(void *), void *data_ref, int (*cmp)())
+char	*ft_strrev(char *str)
 {
-	if (begin_list == NULL)
-		return ;
-	while (begin_list)
-	{
-		if (!(*cmp)(begin_list->data, data_ref))
-			(*f)(begin_list->data);
-		begin_list = begin_list->next;
-	}
+	int		i;
+	int		s;
+	char	tmp[ft_strlen(str)];
+
+	s = ft_strlen(str);
+	i = -1;
+	while (++i < s)
+		tmp[(s - 1) - i] = str[i];
+	i = -1;
+	while (++i < s)
+		str[i] = tmp[i];
+	return (str);
 }

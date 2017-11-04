@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_find.c                                     :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 17:21:03 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:27:09 by bluff            ###   ########.fr       */
+/*   Created: 2017/11/04 00:38:19 by bluff             #+#    #+#             */
+/*   Updated: 2017/11/04 00:51:08 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)())
+int	ft_pow(int nb, int power)
 {
-	if (begin_list == NULL)
-		return (NULL);
-	while (begin_list)
-	{
-		if (!(*cmp)(begin_list->data, data_ref))
-			break ;
-		begin_list = begin_list->next;
-	}
-	return (begin_list);
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	if (power == 1)
+		return (nb);
+	return (nb * ft_pow(nb, power - 1));
 }

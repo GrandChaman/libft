@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/03 13:56:22 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:52:38 by bluff            ###   ########.fr       */
+/*   Created: 2017/09/13 10:20:56 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:35:58 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-int	ft_find_next_prime(int nb)
+int	*ft_map(int *tab, int length, int (*f)(int))
 {
-	int prime;
+	int *ntab;
+	int i;
 
-	prime = 0;
-	while (!prime)
-		prime = ft_is_prime(nb++);
-	return (--nb);
+	i = 0;
+	ntab = (int*)malloc(sizeof(int) * (length + 1));
+	while (i < length)
+	{
+		ntab[i] = f(tab[i]);
+		i++;
+	}
+	return (ntab);
 }

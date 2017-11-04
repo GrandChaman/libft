@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_lst_push_front.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 10:58:59 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:31:17 by bluff            ###   ########.fr       */
+/*   Created: 2017/09/14 10:54:01 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:56:45 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int	ft_list_size(t_list *begin_list)
+void	ft_lst_push_front(t_list **begin_list, void *data, size_t size)
 {
-	int c;
+	t_list *tmp;
 
 	if (begin_list == NULL)
-		return (0);
-	c = 1;
-	while ((begin_list = begin_list->next))
-		c++;
-	return (c);
+		return ;
+	tmp = ft_lstnew(data, size);
+	if (*begin_list == NULL)
+	{
+		*begin_list = tmp;
+		tmp->next = NULL;
+		return ;
+	}
+	tmp->next = *begin_list;
+	*begin_list = tmp;
 }

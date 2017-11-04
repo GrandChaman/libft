@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_reverse.c                                  :+:      :+:    :+:   */
+/*   ft_lst_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 12:04:26 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:30:58 by bluff            ###   ########.fr       */
+/*   Created: 2017/09/14 10:58:59 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:31:17 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_list_reverse(t_list **begin_list)
+int	ft_lst_size(t_list *begin_list)
 {
-	t_list	*curr;
-	t_list	*rev;
-	t_list	*first;
-	int		i;
-	int		ii;
+	int c;
 
-	if (begin_list == NULL || *begin_list == NULL)
-		return ;
-	i = 0;
-	curr = *begin_list;
-	while (curr->next && ++i)
-		curr = curr->next;
-	first = curr;
-	ii = i;
-	while (ii--)
-	{
-		rev = *begin_list;
-		while (rev->next != curr)
-			rev = rev->next;
-		curr->next = rev;
-		curr = rev;
-	}
-	curr->next = 0;
-	*begin_list = first;
+	if (begin_list == NULL)
+		return (0);
+	c = 1;
+	while ((begin_list = begin_list->next))
+		c++;
+	return (c);
 }

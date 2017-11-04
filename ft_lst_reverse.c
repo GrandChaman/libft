@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_remove_if.c                                :+:      :+:    :+:   */
+/*   ft_lst_reverse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 17:27:11 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:30:53 by bluff            ###   ########.fr       */
+/*   Created: 2017/09/14 12:04:26 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:30:58 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+void	ft_lst_reverse(t_list **begin_list)
 {
-	t_list *tmp;
-	t_list *todel;
+	t_list	*curr;
+	t_list	*rev;
+	t_list	*first;
+	int		i;
+	int		ii;
 
 	if (begin_list == NULL || *begin_list == NULL)
 		return ;
-	tmp = *begin_list;
-	while (tmp && !(*cmp)(tmp->data, data_ref))
+	i = 0;
+	curr = *begin_list;
+	while (curr->next && ++i)
+		curr = curr->next;
+	first = curr;
+	ii = i;
+	while (ii--)
 	{
-		todel = tmp;
-		tmp = tmp->next;
-		free(todel);
-		*begin_list = tmp;
+		rev = *begin_list;
+		while (rev->next != curr)
+			rev = rev->next;
+		curr->next = rev;
+		curr = rev;
 	}
-	while (tmp && tmp->next)
-	{
-		if (!(*cmp)(tmp->next->data, data_ref))
-		{
-			todel = tmp->next;
-			tmp->next = tmp->next->next;
-			free(todel);
-			continue ;
-		}
-		tmp = tmp->next;
-	}
+	curr->next = 0;
+	*begin_list = first;
 }

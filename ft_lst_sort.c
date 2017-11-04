@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_sort.c                                     :+:      :+:    :+:   */
+/*   ft_lst_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_list_sort(t_list **begin_list, int (*cmp)())
+void	ft_lst_sort(t_list **begin_list, int (*cmp)())
 {
 	t_list	*curr;
 	t_list	*first;
@@ -25,11 +25,11 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)())
 	curr = first;
 	while (curr && curr->next)
 	{
-		if ((*cmp)(curr->data, curr->next->data) > 0)
+		if ((*cmp)(curr->content, curr->next->content) > 0)
 		{
-			tmp = curr->next->data;
-			curr->next->data = curr->data;
-			curr->data = tmp;
+			tmp = curr->next->content;
+			curr->next->content = curr->content;
+			curr->content = tmp;
 			curr = *begin_list;
 			continue ;
 		}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_at.c                                       :+:      :+:    :+:   */
+/*   ft_lst_at.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
+t_list	*ft_lst_at(t_list *begin_list, unsigned int nbr)
 {
 	unsigned int i;
 

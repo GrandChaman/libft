@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*   ft_lst_last.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/03 13:56:22 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:52:38 by bluff            ###   ########.fr       */
+/*   Created: 2017/09/14 11:00:42 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/11/04 00:29:07 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_find_next_prime(int nb)
+t_list	*ft_lst_last(t_list *begin_list)
 {
-	int prime;
-
-	prime = 0;
-	while (!prime)
-		prime = ft_is_prime(nb++);
-	return (--nb);
+	if (begin_list == NULL)
+		return (NULL);
+	while (begin_list->next)
+		begin_list = begin_list->next;
+	return (begin_list);
 }
