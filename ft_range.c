@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/06 14:26:25 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:36:35 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/05 14:14:32 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	*ft_range(int min, int max)
 	if (max <= min)
 		return (0);
 	r = (unsigned int)(max - min);
-	res = (int*)malloc(sizeof(int) * r);
+	if (!(res = (int*)malloc(sizeof(int) * r)))
+		return (NULL);
 	while (i < r)
 	{
 		res[i] = min++;
