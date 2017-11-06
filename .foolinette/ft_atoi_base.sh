@@ -3,7 +3,7 @@ source ./foolinette_lib.sh
 # BEGIN METHOD
 
 printf "Compilation FT0 (get (ft_)atoi_base of argv[2])"
-gcc $CFLAG $CURR/atoi_base_test.c ft_strlen.c ft_iswhitespace.c ft_pow.c ft_atoi_base.c -I $DIR -o ft_atoi_base_test -D FT0
+gcc $CFLAG $CURR/atoi_base_test.c -I $DIR -o ft_atoi_base_test -D FT0 -L$DIR -lft
 OK
 TARG0="1F4"
 TARG1="0123456789ABCDEF"

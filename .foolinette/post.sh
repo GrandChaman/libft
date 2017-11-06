@@ -31,53 +31,8 @@ else
 fi
 # BEGIN METHOD
 
-rm -f ft_memset_test
-rm -f memset_test
-rm -f ft_bzero
-rm -f bzero
-rm -f ft_memcpy_test
-rm -f memcpy_test
-rm -f ft_memccpy_test
-rm -f memccpy_test
-rm -f ft_memmove_test
-rm -f memmove_test
-rm -f ft_memchr_test
-rm -f memchr_test
-rm -f ft_memcmp_test
-rm -f memcmp_test
-rm -f ft_strlen_test
-rm -f strlen_test
-rm -f ft_strcpy_test
-rm -f strcpy_test
-rm -f ft_strdup_test
-rm -f strdup_test
-rm -f ft_strncpy_test
-rm -f strncpy_test
-rm -f ft_strlcat_test
-rm -f strlcat_test
-rm -f ft_strcat_test
-rm -f strcat_test
-rm -f ft_strncat_test
-rm -f strncat_test
-rm -f ft_strchr_test
-rm -f strchr_test
-rm -f ft_strrchr_test
-rm -f strrchr_test
-rm -f ft_strstr_test
-rm -f strstr_test
-rm -f ft_strcmp_test
-rm -f strcmp_test
-rm -f ft_strncmp_test
-rm -f strncmp_test
-rm -f ft_strnstr_test
-rm -f strnstr_test
-rm -f ft_atoi_test
-rm -f atoi_test
-rm -f ft_isalpha_test
-rm -f ft_strsplit_test
-rm -f ft_itoa_test
-rm -f ft_atoi_base_test
-make fclean
+rm -f *_test
+make clean
 #END METHOD
 trap : 0
 exit $EXITCODE
