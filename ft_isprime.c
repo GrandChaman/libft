@@ -6,13 +6,13 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 11:08:51 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/04 00:26:10 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 11:59:11 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_sqrt_top(int nb)
+static int		ft_sqrt_top(int nb)
 {
 	unsigned long start;
 	unsigned long end;
@@ -41,7 +41,7 @@ static int	ft_sqrt_top(int nb)
 	return (m);
 }
 
-int	ft_is_prime(int nb)
+int				ft_is_prime(int nb)
 {
 	int curr;
 	int res;

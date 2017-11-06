@@ -6,14 +6,14 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 20:33:10 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 23:40:20 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:04:38 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void ft_putchar(char c)
+void	ft_putchar(char c)
 {
 	ft_putchar_fd(c, 1);
 }

@@ -6,13 +6,13 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:47:51 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 18:29:45 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 11:57:12 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int ft_isblank(char c)
+static int	ft_isblank(char c)
 {
 	if (c == '\f' || c == '\t' || c == '\v' || c == '\n'
 		|| c == '\r' || c == ' ')
@@ -20,7 +20,7 @@ static int ft_isblank(char c)
 	return (0);
 }
 
-int		ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int i;
 	int ii;

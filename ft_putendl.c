@@ -6,13 +6,13 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 23:49:50 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/23 00:04:20 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:04:46 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putendl(const char *s)
+void	ft_putendl(const char *s)
 {
 	if (s)
 		ft_putendl_fd(s, 1);
