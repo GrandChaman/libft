@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 11:33:35 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/01 22:34:49 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:12:25 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int i;
-	int len;
-	char *res;
+	int		i;
+	int		len;
+	char	*res;
 
 	i = 0;
 	len = 0;

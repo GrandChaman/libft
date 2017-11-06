@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 12:17:35 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/26 12:55:48 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:27:45 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char *res;
-	unsigned int i;
+	char			*res;
+	unsigned int	i;
 
 	i = -1;
 	if (!s)

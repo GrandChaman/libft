@@ -6,14 +6,14 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:34:24 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/22 18:16:49 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:24:33 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_strnstr(const char* str, const char* substr, size_t count)
+char	*ft_strnstr(const char *str, const char *substr, size_t count)
 {
 	unsigned int i;
 	unsigned int ii;

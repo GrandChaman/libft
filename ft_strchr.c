@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:38:04 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/21 16:48:26 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:11:33 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strchr(const char *str, int ch)
 {
-	int i;
-	char c;
+	int		i;
+	char	c;
 
 	c = ch;
 	i = 0;

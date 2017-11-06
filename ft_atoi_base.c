@@ -6,13 +6,13 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 15:48:30 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/04 16:16:09 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 11:56:40 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int get_pos_in_array(const char c, const char *base)
+static int		get_pos_in_array(const char c, const char *base)
 {
 	int i;
 
@@ -22,7 +22,7 @@ static int get_pos_in_array(const char c, const char *base)
 	return (i);
 }
 
-static int ft_atoi_base_routine(const char *nb, const char *base)
+static int		ft_atoi_base_routine(const char *nb, const char *base)
 {
 	int i;
 	int nblen;
@@ -38,7 +38,7 @@ static int ft_atoi_base_routine(const char *nb, const char *base)
 	return (res);
 }
 
-int ft_atoi_base(const char *nb, const char *base)
+int				ft_atoi_base(const char *nb, const char *base)
 {
 	int i;
 	int res;

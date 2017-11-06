@@ -6,14 +6,14 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 17:08:48 by bluff             #+#    #+#             */
-/*   Updated: 2017/10/31 17:20:49 by bluff            ###   ########.fr       */
+/*   Updated: 2017/11/06 12:01:28 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-t_list*		ft_lstnew(void const *content, size_t content_size)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list	*el;
 
