@@ -13,7 +13,7 @@
 #include "ft_printf_utils.h"
 #include <stdarg.h>
 #include "ft_printf_format_list.h"
-#include "libft/libft.h"
+#include "libft.h"
 
 char	*get_null_str(int empty)
 {

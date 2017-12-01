@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "ft_printf_utils.h"
 #include "ft_printf_parser.h"
-#include "libft/libft.h"
+#include "libft.h"
 #include <stdarg.h>
 
 int		handle_colors(const char *format, int *li, int *i)

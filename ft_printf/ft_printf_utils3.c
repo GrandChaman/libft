@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "ft_printf_utils.h"
 #include "ft_printf_format_list.h"
-#include "libft/libft.h"
+#include "libft.h"
 
 int								is_format_identifier(const char *str)
 {

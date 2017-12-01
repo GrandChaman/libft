@@ -6,13 +6,25 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/09 09:34:56 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/11/30 17:38:41 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# define BUFF_SIZE 4096
+
+typedef struct		s_gnl
+{
+	char			buffer[BUFF_SIZE + 1];
+	char			*current_line;
+	int				cursor;
+	int				fd;
+	int				ll;
+}					t_gnl;
+
+int					get_next_line(int const fd, char **line);
 
 typedef struct			s_list
 {
@@ -128,5 +140,6 @@ void					ft_swap(int *a, int *b);
 void					ft_print_memory(const void *addr, size_t size);
 int						ft_iswhitespace(int ch);
 int						ft_atoi_base(const char *nb, const char *base);
+int						ft_printf(const char *format, ...);
 
 #endif

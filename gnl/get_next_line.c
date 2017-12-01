@@ -6,11 +6,11 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 17:18:02 by bluff             #+#    #+#             */
-/*   Updated: 2017/11/16 14:09:03 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/01 11:00:00 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/uio.h>

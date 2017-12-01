@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf_utils.h"
-#include "libft/libft.h"
+#include "libft.h"
 #include <stdarg.h>
 
 int		extract_dyn_param(int *minus, va_list ap)

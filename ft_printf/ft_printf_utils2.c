@@ -12,7 +12,7 @@
 
 #include "ft_printf_utils.h"
 #include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 #include <stdlib.h>
 #include "ft_printf_format_list.h"
 

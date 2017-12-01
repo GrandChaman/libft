@@ -13,7 +13,7 @@
 #include "ft_printf_parser.h"
 #include "ft_printf_utils.h"
 #include "ft_printf_format_list.h"
-#include "libft/libft.h"
+#include "libft.h"
 #include "ft_printf.h"
 #include <unistd.h>
 #include <stdarg.h>

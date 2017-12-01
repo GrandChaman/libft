@@ -13,7 +13,7 @@
 #include "ft_printf_utils.h"
 #include <stdarg.h>
 #include "ft_printf_format_list.h"
-#include "libft/libft.h"
+#include "libft.h"
 
 int		print_octal_upper(t_ptf_toprint format, t_ptf_param param, va_list ap)
 {

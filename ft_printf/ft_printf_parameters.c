@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf_utils.h"
-#include "libft/libft.h"
+#include "libft.h"
 #include "ft_printf_parser.h"
 #include "ft_printf_extract_dynamic_param.h"
 #include <stdarg.h>
