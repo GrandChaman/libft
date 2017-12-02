@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/12/01 11:01:16 by fle-roy          ###   ########.fr        #
+#    Updated: 2017/12/01 11:11:00 by fle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,6 @@ OBJS_PRINTF = $(SRCS_PRINTF:$(PRINTF_DIR)/%.c=$(OBJS)/%.o)
 OBJS_LIBFT = $(SRCS_LIBFT:$(LIBFT_DIR)/%.c=$(OBJS)/%.o)
 NAME = $(addprefix $(BIN), libft.a)
 all: $(NAME)
-test:
-	@echo $(OBJS_PRINTF)
 $(OBJS)/%.o: $(LIBFT_DIR)/%.c
 	@printf "\r\033[K[LIBFT] \033[1;32mBuilding $<\033[0m"
 	@$(CC) $(CFLAGS) $< -o $@
