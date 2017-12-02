@@ -55,7 +55,7 @@ int		print_wchar(int fd, t_ptf_toprint format, t_ptf_param param, va_list ap)
 	if (!is_utf8(c))
 		return (-1);
 	if (format.len)
-		res += ft_putstr_limit(fd, format.str, format.len);
+		res += ft_putnstr(fd, format.str, format.len);
 	if (c > 255 && c < 2048)
 		param.padding -= 1;
 	else if ((c > 2047 && c < 65536))
@@ -102,7 +102,7 @@ int		print_wstring(int fd, t_ptf_toprint format, t_ptf_param p, va_list ap)
 	i = -1;
 	res = 0;
 	if (format.len)
-		res += ft_putstr_limit(fd, format.str, format.len);
+		res += ft_putnstr(fd, format.str, format.len);
 	if (!(c = va_arg(ap, wchar_t *)))
 		c = L"(null)";
 	while (c[++i] && (i < p.precision || p.precision < 0))

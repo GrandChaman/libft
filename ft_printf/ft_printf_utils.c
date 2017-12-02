@@ -61,7 +61,7 @@ int					ft_strnccmp(const char *lhs, const char *rhs, int max)
 	return (i);
 }
 
-int					ft_putstr_limit(int fd, const char *str, int stop)
+int					ft_putnstr(int fd, const char *str, int stop)
 {
 	int i;
 

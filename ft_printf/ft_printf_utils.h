@@ -22,7 +22,7 @@
 # define WCHAR_3 240
 # define PADDING_BUF_SIZE 1024
 
-int					ft_putstr_limit(int fd, const char *str, int stop);
+int					ft_putnstr(int fd, const char *str, int stop);
 int					ft_strccmp(const char *lhs, const char *rhs);
 int					ft_strnccmp(const char *lhs, const char *rhs, int max);
 int					format_handler(int fd, t_ptf_toprint format, int *i,

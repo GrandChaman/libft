@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:38:11 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/02 17:04:16 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/02 17:35:43 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		handle_colors(int fd, const char *format, int *li, int *i)
 			len - *i - 1))
 		{
 			if ((*i) - *li)
-				res += ft_putstr_limit(fd, format + *li, (*i) - *li);
-			res += ft_putstr_limit(fd, g_color_list[ii].code, 0);
+				res += ft_putnstr(fd, format + *li, (*i) - *li);
+			res += ft_putnstr(fd, g_color_list[ii].code, 0);
 			*li = len + 1;
 			*i = len;
 			break ;
@@ -41,7 +41,7 @@ int		handle_colors(int fd, const char *format, int *li, int *i)
 	return (res);
 }
 
-int		ft_printf_routine(int fd, const char *format, va_list ap)
+int		ft_printf_routine(int fd, const char *ft, va_list ap)
 {
 	int		i;
 	int		li;
@@ -51,20 +51,20 @@ int		ft_printf_routine(int fd, const char *format, va_list ap)
 	res = 0;
 	li = 0;
 	i = -1;
-	while (format[++i])
-		if (format[i] == '%')
+	while (ft[++i])
+		if (ft[i] == '%')
 		{
-			if ((tmp = format_handler(fd, get_toprint(format, li, i), &i, ap)) >= 0)
+			if ((tmp = format_handler(fd, get_toprint(ft, li, i), &i, ap)) >= 0)
 				res += tmp;
 			else
 				return (-1);
 			li = i;
 			i--;
 		}
-		else if (format[i] == '{')
-			res += handle_colors(fd ,format, &li, &i);
-	res += ft_putstr_limit(fd, format + li,
-		(i && format[i - 1] == '%' ? (i - li) - 1 : 0));
+		else if (ft[i] == '{')
+			res += handle_colors(fd, ft, &li, &i);
+	res += ft_putnstr(fd, ft + li,
+		(i && ft[i - 1] == '%' ? (i - li) - 1 : 0));
 	return (res);
 }
 

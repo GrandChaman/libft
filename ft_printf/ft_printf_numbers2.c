@@ -24,19 +24,19 @@ int		print_binary(int fd, t_ptf_toprint format, t_ptf_param p, va_list ap)
 
 	res = 0;
 	if (format.len)
-		res += ft_putstr_limit(fd, format.str, format.len);
+		res += ft_putnstr(fd, format.str, format.len);
 	n = extract_nb(p, ap);
 	istr = ft_itoa_base(n, 2);
 	len = ft_strlen(istr);
 	p.padding -= ((p.hashtag && n) ? 2 : 0);
 	if ((p.hashtag && n) && p.zero)
-		res += ft_putstr_limit(fd, "0b", 2);
+		res += ft_putnstr(fd, "0b", 2);
 	res += handle_padding(fd, p, (n || p.precision ? len : -1), BEFORE);
 	if ((p.hashtag && n) && !p.zero)
-		res += ft_putstr_limit(fd, "0b", 2);
+		res += ft_putnstr(fd, "0b", 2);
 	res += (p.precision > 0 ? print_padding(fd, '0', p.precision - len) : 0);
 	if (n || p.precision)
-		res += ft_putstr_limit(fd, istr, len);
+		res += ft_putnstr(fd, istr, len);
 	res += handle_padding(fd, p, (n || p.precision ? len : -1), AFTER);
 	free(istr);
 	return (res);

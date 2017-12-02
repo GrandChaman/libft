@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:25:43 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/02 17:20:47 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/02 17:35:21 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define FT_PRINTF_FORMAT_LIST_H
 # define FLAG_LIST "-+ #0123456789.hljzcsoudixpXDIUOCS%*"
 # define DONT_OVERZERO "cs%"
-# define LOWER 0
-# define UPPER 1
-# define POINTER 2
+# define LR 0
+# define UP 1
+# define PTR 2
 # include <stdlib.h>
 # define ANSI_COLOR_RED        "\x1b[31m"
 # define ANSI_COLOR_GREEN      "\x1b[32m"
@@ -75,8 +75,8 @@ typedef struct					s_ptf_toprint
 typedef struct					s_ptf_format
 {
 	const char					*trigger;
-	int							(*f)(int fd, t_ptf_toprint format, t_ptf_param param,
-		va_list ap);
+	int							(*f)(int fd, t_ptf_toprint format,
+		t_ptf_param param, va_list ap);
 
 }								t_ptf_format;
 
@@ -109,8 +109,8 @@ int								print_hex(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
 int								print_hex_upper(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_unsigned_upper(int fd, t_ptf_toprint format,
-	t_ptf_param param, va_list ap);
+int								print_unsigned_upper(int fd,
+	t_ptf_toprint format, t_ptf_param param, va_list ap);
 int								print_signed_upper(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
 int								print_wchar(int fd, t_ptf_toprint format,
