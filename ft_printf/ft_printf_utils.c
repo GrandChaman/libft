@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:53:42 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/30 13:41:18 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/02 17:06:11 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					ft_nblen(unsigned long long nb)
 	return (ft_nblen(nb / 10) + 1);
 }
 
-int					print_padding(char c, int len)
+int					print_padding(int fd, char c, int len)
 {
 	char	tmp[PADDING_BUF_SIZE + 1];
 	int		res;
@@ -32,12 +32,12 @@ int					print_padding(char c, int len)
 		return (0);
 	if (len > PADDING_BUF_SIZE)
 	{
-		res += print_padding(c, (len - PADDING_BUF_SIZE));
+		res += print_padding(fd, c, (len - PADDING_BUF_SIZE));
 		len -= (len - PADDING_BUF_SIZE);
 	}
 	ft_memset(tmp, c, len);
 	tmp[len] = '\0';
-	write(1, tmp, len);
+	write(fd, tmp, len);
 	return (res + len);
 }
 
@@ -61,13 +61,13 @@ int					ft_strnccmp(const char *lhs, const char *rhs, int max)
 	return (i);
 }
 
-int					ft_putstr_limit(const char *str, int stop)
+int					ft_putstr_limit(int fd, const char *str, int stop)
 {
 	int i;
 
 	i = 0;
 	while (str[i] && (!stop || i < stop))
 		i++;
-	write(1, str, i);
+	write(fd, str, i);
 	return (i);
 }

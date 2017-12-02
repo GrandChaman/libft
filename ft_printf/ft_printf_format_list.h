@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:25:43 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/30 10:29:16 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/02 17:20:47 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct					s_ptf_toprint
 typedef struct					s_ptf_format
 {
 	const char					*trigger;
-	int							(*f)(t_ptf_toprint format, t_ptf_param param,
+	int							(*f)(int fd, t_ptf_toprint format, t_ptf_param param,
 		va_list ap);
 
 }								t_ptf_format;
@@ -90,38 +90,38 @@ static const t_length_modifier	g_length_modifier_list[] = {
 	{NULL, NONE}
 };
 
-int								hex_handler(int m, t_ptf_toprint format,
+int								hex_handler(int fd[2], t_ptf_toprint format,
 	t_ptf_param p, va_list ap);
 
-int								print_string(t_ptf_toprint format,
+int								print_string(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_char(t_ptf_toprint format,
+int								print_char(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_pourcent(t_ptf_toprint format,
+int								print_pourcent(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_octal(t_ptf_toprint format,
+int								print_octal(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_unsigned(t_ptf_toprint format,
+int								print_unsigned(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_signed(t_ptf_toprint format,
+int								print_signed(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_hex(t_ptf_toprint format,
+int								print_hex(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_hex_upper(t_ptf_toprint format,
+int								print_hex_upper(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_unsigned_upper(t_ptf_toprint format,
+int								print_unsigned_upper(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_signed_upper(t_ptf_toprint format,
+int								print_signed_upper(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_wchar(t_ptf_toprint format,
+int								print_wchar(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_wstring(t_ptf_toprint format,
+int								print_wstring(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_octal_upper(t_ptf_toprint format,
+int								print_octal_upper(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_pointer(t_ptf_toprint format,
+int								print_pointer(int fd, t_ptf_toprint format,
 	t_ptf_param param, va_list ap);
-int								print_binary(t_ptf_toprint format,
+int								print_binary(int fd, t_ptf_toprint format,
 	t_ptf_param p, va_list ap);
 
 static const t_ptf_format g_format_list[] = {

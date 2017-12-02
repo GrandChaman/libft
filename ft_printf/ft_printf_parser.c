@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:53:42 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/30 13:41:18 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/02 17:13:08 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_ptf_toprint	get_toprint(const char *format, int start, int stop)
 	return (res);
 }
 
-int				format_handler(t_ptf_toprint format, int *i, va_list ap)
+int				format_handler(int fd, t_ptf_toprint format, int *i, va_list ap)
 {
 	int				ii;
 	t_ptf_format	fmt;
@@ -66,5 +66,5 @@ int				format_handler(t_ptf_toprint format, int *i, va_list ap)
 	if (l == 0 || !fmt.f)
 		return (0);
 	*i += l;
-	return (fmt.f(format, param, ap));
+	return (fmt.f(fd, format, param, ap));
 }
