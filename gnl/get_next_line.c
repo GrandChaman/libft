@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 17:18:02 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/01 11:00:00 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 14:05:47 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_list		*get_element(int const fd, t_list **rt_gnl)
 		else
 			tmp = tmp->next;
 	if (!(ngnl = (t_gnl*)malloc(sizeof(t_gnl))))
-		return (NULL);
+		ft_perror();
 	ngnl->fd = fd;
 	ngnl->cursor = 0;
 	ngnl->current_line = NULL;

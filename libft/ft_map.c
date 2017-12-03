@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 10:20:56 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/06 11:45:14 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 14:06:16 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	*ft_map(int *tab, int length, int (*f)(int))
 
 	i = 0;
 	if (!(ntab = (int*)malloc(sizeof(int) * (length + 1))))
-		return (NULL);
+		ft_perror();
 	while (i < length)
 	{
 		ntab[i] = f(tab[i]);

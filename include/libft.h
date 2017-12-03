@@ -6,14 +6,16 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/03 11:58:11 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 14:03:39 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <stdio.h>
 # define BUFF_SIZE 4096
+# define PRGRM_NAME "ft_ls"
 
 typedef struct			s_gnl
 {
@@ -151,5 +153,5 @@ void					ft_btree_apply_suffix(t_btree *root,
 	void (*applyf)(void *));
 int						ft_printf(const char *format, ...);
 int						ft_fprintf(int fd, const char *format, ...);
-
+void					ft_perror(void);
 #endif

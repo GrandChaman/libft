@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/21 00:12:49 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/03 14:06:33 by fle-roy          ###   ########.fr       */
+/*   Created: 2017/12/03 14:02:34 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/12/03 14:04:33 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 #include <stdlib.h>
 
-char	*ft_strdup(const char *str)
+void		ft_perror(void)
 {
-	char *nstr;
-
-	if (!(nstr = (char*)malloc(sizeof(char) * (ft_strlen(str) + 1))))
-		ft_perror();
-	ft_strcpy(nstr, str);
-	return (nstr);
+	perror(PRGRM_NAME);
+	exit(-1);
 }

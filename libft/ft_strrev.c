@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 12:23:57 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/08 14:33:53 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 14:06:55 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrev(char *str)
 
 	s = ft_strlen(str);
 	if (!(tmp = (char*)malloc(sizeof(char) * (s + 1))))
-		return (NULL);
+		ft_perror();
 	i = -1;
 	while (++i < s)
 		tmp[(s - 1) - i] = str[i];

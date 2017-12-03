@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:04:55 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/03 11:54:59 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 14:05:55 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_btree		*ft_btree_create_node(void *item)
 
 	new = malloc(sizeof(t_btree));
 	if (!new)
-		return (NULL);
+		ft_perror();
 	new->item = item;
 	new->left = NULL;
 	new->right = NULL;
