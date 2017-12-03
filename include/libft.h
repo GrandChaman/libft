@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/02 17:41:57 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 11:58:11 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,15 @@ void					ft_swap(int *a, int *b);
 void					ft_print_memory(const void *addr, size_t size);
 int						ft_iswhitespace(int ch);
 int						ft_atoi_base(const char *nb, const char *base);
+t_btree					*ft_btree_create_node(void *item);
+void					ft_btree_insert_data(t_btree **root, void *item,
+	int (*cmpf)(void *, void *));
+void					ft_btree_apply_infix(t_btree *root,
+	void (*applyf)(void *));
+void					ft_btree_apply_prefix(t_btree *root,
+	void (*applyf)(void *));
+void					ft_btree_apply_suffix(t_btree *root,
+	void (*applyf)(void *));
 int						ft_printf(const char *format, ...);
 int						ft_fprintf(int fd, const char *format, ...);
 
