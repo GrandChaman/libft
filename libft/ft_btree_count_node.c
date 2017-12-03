@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree_destroy.c                                 :+:      :+:    :+:   */
+/*   ft_btree_count_node.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 14:25:30 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/03 18:42:48 by fle-roy          ###   ########.fr       */
+/*   Created: 2017/12/03 18:11:06 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/12/03 18:38:03 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-void		ft_btree_destroy(t_btree **root)
+int		ft_btree_count_node(t_btree *root)
 {
-	if (!root || !(*root))
-		return ;
-	if ((*root)->left)
-		ft_btree_destroy(&((*root)->left));
-	if ((*root)->right)
-		ft_btree_destroy(&((*root)->right));
-	free((*root)->item);
-	free(*root);
-	*root = NULL;
+	int i;
+
+	i = 0;
+	if (!root)
+		return (0);
+	if (root->left)
+		i += ft_btree_count_node(root->left);
+	i++;
+	if (root->right)
+		i += ft_btree_count_node(root->right);
+	return (i);
 }
