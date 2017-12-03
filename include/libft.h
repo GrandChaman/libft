@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/03 14:03:39 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/03 14:28:52 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void					ft_btree_apply_prefix(t_btree *root,
 	void (*applyf)(void *));
 void					ft_btree_apply_suffix(t_btree *root,
 	void (*applyf)(void *));
+void					ft_btree_destroy(t_btree **root);
 int						ft_printf(const char *format, ...);
 int						ft_fprintf(int fd, const char *format, ...);
 void					ft_perror(void);
