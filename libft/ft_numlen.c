@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 14:02:34 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/08 17:01:49 by fle-roy          ###   ########.fr       */
+/*   Created: 2017/12/05 16:18:57 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/12/05 16:19:55 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void		ft_perror(void)
+unsigned int		ft_numlen(unsigned int nb)
 {
-	perror(PRGRM_NAME);
-	exit(-1);
+	if (!nb)
+		return (0);
+	return (ft_numlen(nb / 10) + 1);
 }

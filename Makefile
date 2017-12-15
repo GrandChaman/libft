@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/12/03 18:21:41 by fle-roy          ###   ########.fr        #
+#    Updated: 2017/12/15 14:10:31 by fle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ ft_strrchr.c ft_strrev.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 ft_swap.c ft_tolower.c ft_toupper.c ft_atoi_base.c ft_iswhitespace.c \
 ft_btree_apply_infix.c ft_btree_apply_suffix.c ft_btree_apply_prefix.c \
 ft_btree_create_node.c ft_btree_insert_data.c ft_perror.c ft_btree_destroy.c \
-ft_btree_count_node.c)
+ft_btree_count_node.c ft_itoa_base.c ft_numlen.c ft_getenv.c ft_free2d.c \
+ft_str2ddup.c ft_haschar.c ft_argument_parser.c)
 
 SRCS_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf.c ft_printf_utils.c \
 		ft_printf_string.c ft_printf_parser.c \
@@ -47,15 +48,17 @@ SRCS_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf.c ft_printf_utils.c \
 INCLUDES = include
 CFLAGS =-c -Wall -Wextra -Werror -I $(INCLUDES)
 OBJS = objs
-CC = gcc
+CC = cc
 LN = ar
 LFLAGS = rsc
-BIN = bin/
+BIN = bin
 OBJS_GNL = $(SRCS_GNL:$(GNL_DIR)/%.c=$(OBJS)/%.o)
 OBJS_PRINTF = $(SRCS_PRINTF:$(PRINTF_DIR)/%.c=$(OBJS)/%.o)
 OBJS_LIBFT = $(SRCS_LIBFT:$(LIBFT_DIR)/%.c=$(OBJS)/%.o)
-NAME = $(addprefix $(BIN), libft.a)
+NAME = $(addprefix ./$(BIN)/, libft.a)
 all: $(NAME)
+test:
+	echo $(NAME)
 $(OBJS)/%.o: $(LIBFT_DIR)/%.c
 	@printf "\r\033[K[LIBFT] \033[1;32mBuilding $<\033[0m"
 	@$(CC) $(CFLAGS) $< -o $@
@@ -65,19 +68,9 @@ $(OBJS)/%.o: $(PRINTF_DIR)/%.c
 $(OBJS)/%.o: $(GNL_DIR)/%.c
 	@printf "\r\033[K[GNL] \033[1;32mBuilding $<\033[0m"
 	@$(CC) $(CFLAGS) $< -o $@
-libft: $(OBJS_LIBFT)
-	@printf "\r\033[K[LIBFT] \033[1;32mLinking...\033[0m"
-	@$(LN) $(LFLAGS) $(NAME) $(OBJS_LIBFT)
-	@printf "\r\033[K[LIBFT] \033[1;32mDone!\033[0m\n"
-ft_printf: $(OBJS_PRINTF)
-	@printf "\r\033[K[PRINTF] \033[1;32mLinking...\033[0m"
-	@$(LN) $(LFLAGS) $(NAME) $(OBJS_PRINTF)
-	@printf "\r\033[K[PRINTF] \033[1;32mDone!\033[0m\n"
-gnl: $(OBJS_GNL)
-	@printf "\r\033[K[GNL] \033[1;32mLinking...\033[0m"
-	@$(LN) $(LFLAGS) $(NAME) $(OBJS_GNL)
-	@printf "\r\033[K[GNL] \033[1;32mDone!\033[0m\n"
-$(NAME): libft ft_printf gnl
+$(NAME): $(OBJS_LIBFT) $(OBJS_PRINTF) $(OBJS_GNL)
+	@printf "\r\033[K[LIBFT_TOTAL] \033[1;32mLinking...\033[0m\n"
+	@$(LN) $(LFLAGS) $(NAME) $(OBJS_LIBFT) $(OBJS_PRINTF) $(OBJS_GNL)
 	@printf "\n[LIBFT_TOTAL] \033[1;32mDone!\033[0m\n"
 clean:
 	@rm -f $(OBJS_LIBFT) $(OBJS_PRINTF) $(OBJS_GNL)

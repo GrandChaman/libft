@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   ft_free2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 14:02:34 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/08 17:01:49 by fle-roy          ###   ########.fr       */
+/*   Created: 2017/12/13 14:22:18 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/12/14 11:10:18 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void		ft_perror(void)
+void		ft_free2d(void **arr)
 {
-	perror(PRGRM_NAME);
-	exit(-1);
+	int i;
+
+	i = 0;
+	while (arr + i && *(arr + i))
+		free(*(arr + i++));
+	if (arr)
+		free(arr);
 }

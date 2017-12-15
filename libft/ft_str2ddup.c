@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   ft_str2ddup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 14:02:34 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/08 17:01:49 by fle-roy          ###   ########.fr       */
+/*   Created: 2017/12/14 11:09:20 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/12/14 11:25:49 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void		ft_perror(void)
+char	**ft_str2ddup(char **arr)
 {
-	perror(PRGRM_NAME);
-	exit(-1);
+	char	**res;
+	int		i;
+
+	i = 0;
+	if (!arr)
+		return (NULL);
+	while (arr && arr[i])
+		i++;
+	res = (char**)ft_memalloc(sizeof(char*) * (i + 1));
+	res[i] = NULL;
+	i = -1;
+	while (arr && arr[++i])
+		*(res + i) = ft_strdup(*(arr + i));
+	return (res);
 }

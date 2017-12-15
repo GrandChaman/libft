@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   ft_haschar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 14:02:34 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/08 17:01:49 by fle-roy          ###   ########.fr       */
+/*   Created: 2017/12/14 16:05:21 by fle-roy           #+#    #+#             */
+/*   Updated: 2017/12/14 18:29:21 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void		ft_perror(void)
+int		ft_haschar(char *c, char ch)
 {
-	perror(PRGRM_NAME);
-	exit(-1);
+	int i;
+
+	i = 0;
+	if (!c)
+		return (0);
+	while (c[i])
+		if (c[i++] == ch)
+			return (1);
+	return (0);
 }

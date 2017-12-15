@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/03 18:15:53 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/15 14:10:54 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,24 @@ typedef struct			s_list
 	size_t				content_size;
 	struct s_list		*next;
 }						t_list;
+
+typedef struct			s_args_config
+{
+	char				*no_args_keys;
+	char				*args_keys;
+}						t_args_config;
+
+typedef struct			s_args
+{
+	char				key;
+	char				*value;
+}						t_args;
+
+typedef struct			s_param
+{
+	char				*args;
+	size_t				content_size;
+}						t_param;
 
 typedef struct			s_btree {
 	struct s_btree		*parent;
@@ -156,4 +174,13 @@ int						ft_btree_count_node(t_btree *tree);
 int						ft_printf(const char *format, ...);
 int						ft_fprintf(int fd, const char *format, ...);
 void					ft_perror(void);
+char					*ft_itoa_base(unsigned long long nb, int base);
+unsigned int			ft_numlen(unsigned int nb);
+const char				*ft_getenv(char *search, const char **env);
+void					ft_free2d(void **arr);
+char					**ft_str2ddup(char **arr);
+int						ft_haschar(char *c, char ch);
+int						ft_addparam(char *correct, char *chain, char param);
+t_list					*get_param(t_args_config conf, int argc,
+	const char **argv);
 #endif

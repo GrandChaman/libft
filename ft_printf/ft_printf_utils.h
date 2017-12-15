@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:55:55 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/02 17:12:48 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/05 14:26:57 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void				ft_putll(int fd, unsigned long long n, int *i);
 unsigned long long	extract_nb(t_ptf_param param, va_list ap);
 int					ft_nblen(unsigned long long nb);
 unsigned long long	extract_nb_signed(t_ptf_param *param, va_list ap);
-char				*ft_itoa_base(unsigned long long nb, int base);
 void				ft_strtolower(char *str);
 int					is_arguments(const char *str);
 int					is_format_identifier(const char *str);
