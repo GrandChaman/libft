@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:05:21 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/14 18:29:21 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/19 14:17:40 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int		ft_haschar(char *c, char ch)
 		return (0);
 	while (c[i])
 		if (c[i++] == ch)
-			return (1);
+			return (i);
 	return (0);
 }

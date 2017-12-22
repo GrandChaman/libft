@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 11:33:35 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/03 14:06:37 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/22 13:11:36 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s2)
 		len += ft_strlen(s2);
 	if (!(res = (char*)malloc(sizeof(char) * (len + 1))))
-		ft_perror();
+		ft_perror("malloc", "Mallocation failed. Aborting");
 	while (s1 && *s1)
 		res[i++] = *(s1++);
 	while (s2 && *s2)

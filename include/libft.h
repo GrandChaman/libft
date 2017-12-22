@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/15 14:10:54 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/22 13:59:28 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <string.h>
 # include <stdio.h>
 # define BUFF_SIZE 4096
-# define PRGRM_NAME "ft_ls"
+# define PRGRM_NAME "minishell"
 
 typedef struct			s_gnl
 {
@@ -34,18 +34,6 @@ typedef struct			s_list
 	size_t				content_size;
 	struct s_list		*next;
 }						t_list;
-
-typedef struct			s_args_config
-{
-	char				*no_args_keys;
-	char				*args_keys;
-}						t_args_config;
-
-typedef struct			s_args
-{
-	char				key;
-	char				*value;
-}						t_args;
 
 typedef struct			s_param
 {
@@ -108,6 +96,7 @@ void					ft_putstr(const char *s);
 void					ft_putnbr(int n);
 void					ft_putendl(const char *s);
 char					**ft_strsplit(char const *s, char c);
+char					**ft_strsplit_multi(const char *s, int (*c)(int));
 char					*ft_strsub(char const *s, unsigned int start,
 	size_t len);
 char					*ft_itoa(int n);
@@ -173,7 +162,7 @@ void					ft_btree_destroy(t_btree **root);
 int						ft_btree_count_node(t_btree *tree);
 int						ft_printf(const char *format, ...);
 int						ft_fprintf(int fd, const char *format, ...);
-void					ft_perror(void);
+void					ft_perror(char *title, char *error);
 char					*ft_itoa_base(unsigned long long nb, int base);
 unsigned int			ft_numlen(unsigned int nb);
 const char				*ft_getenv(char *search, const char **env);
@@ -181,6 +170,6 @@ void					ft_free2d(void **arr);
 char					**ft_str2ddup(char **arr);
 int						ft_haschar(char *c, char ch);
 int						ft_addparam(char *correct, char *chain, char param);
-t_list					*get_param(t_args_config conf, int argc,
-	const char **argv);
+void					ft_free(void **tofree);
+
 #endif

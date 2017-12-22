@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_strsplit_multi.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 10:20:50 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/22 13:11:57 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/22 13:59:23 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int			count_words(const char *s, char c)
+static int			count_words(const char *s, int (*c)(int))
 {
 	int		count;
 	int		i;
@@ -23,16 +23,16 @@ static int			count_words(const char *s, char c)
 	i = 0;
 	count = 0;
 	in_word = 0;
-	while (s[i] == c)
+	while (c(s[i]))
 		i++;
 	while (s[i++])
 	{
-		if (s[i - 1] == c && in_word)
+		if (c(s[i - 1]) && in_word)
 		{
 			count++;
 			in_word = 0;
 		}
-		else if (s[i - 1] != c)
+		else if (!c(s[i - 1]))
 			in_word = 1;
 	}
 	if (in_word)
@@ -40,7 +40,7 @@ static int			count_words(const char *s, char c)
 	return (count);
 }
 
-static char			**split_routine(char **res, const char *s, char c)
+static char			**split_routine(char **res, const char *s, int (*c)(int))
 {
 	int start;
 	int pos;
@@ -53,12 +53,12 @@ static char			**split_routine(char **res, const char *s, char c)
 	i = -1;
 	while (s[++i])
 	{
-		if (s[i] == c && in_word)
+		if (c(s[i]) && in_word)
 		{
 			in_word = 0;
 			res[pos++] = ft_strsub(s, start, i - start);
 		}
-		else if (s[i] != c && !in_word)
+		else if (!c(s[i]) && !in_word)
 		{
 			in_word = 1;
 			start = i;
@@ -69,7 +69,7 @@ static char			**split_routine(char **res, const char *s, char c)
 	return (res);
 }
 
-char				**ft_strsplit(const char *s, char c)
+char				**ft_strsplit_multi(const char *s, int (*c)(int))
 {
 	char	**res;
 	int		nb_words;

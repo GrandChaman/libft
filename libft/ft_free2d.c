@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 14:22:18 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/14 11:10:18 by fle-roy          ###   ########.fr       */
+/*   Updated: 2017/12/22 11:55:49 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void		ft_free2d(void **arr)
 
 	i = 0;
 	while (arr + i && *(arr + i))
-		free(*(arr + i++));
+	{
+		free(*(arr + i));
+		*(arr + i++) = NULL;
+	}
 	if (arr)
 		free(arr);
 }
