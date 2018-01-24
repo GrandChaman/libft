@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2018/01/24 10:56:18 by fle-roy          ###   ########.fr        #
+#    Updated: 2018/01/24 16:42:40 by fle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ ft_swap.c ft_tolower.c ft_toupper.c ft_atoi_base.c ft_iswhitespace.c \
 ft_btree_apply_infix.c ft_btree_apply_suffix.c ft_btree_apply_prefix.c \
 ft_btree_create_node.c ft_btree_insert_data.c ft_perror.c ft_btree_destroy.c \
 ft_btree_count_node.c ft_itoa_base.c ft_numlen.c ft_getenv.c ft_free2d.c \
-ft_str2ddup.c ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c)
+ft_str2ddup.c ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c \
+dbuf_init.c dbuf_append.c dbuf_clear.c dbuf_insert.c dbuf_remove.c \
+dbuf_destroy.c dbuf_substract.c dbuf_print.c)
 
 SRC_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf.c ft_printf_utils.c \
 		ft_printf_string.c ft_printf_parser.c \
@@ -48,7 +50,7 @@ SRC_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf.c ft_printf_utils.c \
 		ft_printf_numbers2.c)
 
 INCLUDE = include
-CFLAG =-c -Wall -Wextra -Werror -I $(INCLUDE)
+CFLAG =-g3 -c -Wall -Wextra -Werror -I $(INCLUDE)
 OBJ = obj
 CC = cc
 LN = ar

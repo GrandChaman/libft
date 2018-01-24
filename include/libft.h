@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/01/24 10:32:41 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 16:43:46 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define LIBFT_H
 # include <string.h>
 # include <stdio.h>
-# define BUFF_SIZE 4096
+# define BUFF_SIZE 10
 # define PRGRM_NAME "minishell"
+# define LIBFT_OK 0
+# define LIBFT_ERR 1
 
 typedef struct			s_gnl
 {
@@ -50,8 +52,9 @@ typedef struct			s_btree {
 }						t_btree;
 
 typedef struct			s_dbuf {
-	char				buf[BUFF_SIZE + 1];
+	char				*buf;
 	unsigned short		cursor;
+	unsigned long		len;
 }						t_dbuf;
 
 void					ft_bzero(void *s, size_t n);
@@ -178,5 +181,14 @@ int						ft_haschar(char *c, char ch);
 int						ft_addparam(char *correct, char *chain, char param);
 void					ft_free(void **tofree);
 void					ft_lstdestroy(t_list **list);
+int						dbuf_init(t_dbuf *buf);
+int						dbuf_append(t_dbuf *buf, char *to_append);
+int						dbuf_clear(t_dbuf *buf);
+int						dbuf_destroy(t_dbuf *buf);
+int						dbuf_insert(t_dbuf *buf, unsigned long pos,
+	char to_insert);
+int						dbuf_remove(t_dbuf *buf, unsigned long pos);
+int						dbuf_substract(t_dbuf *buf);
+int						dbuf_print(t_dbuf *buf, unsigned char fd);
 
 #endif
