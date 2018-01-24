@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:04:53 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 18:19:41 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 22:27:36 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,7 @@ void	print_char(t_ptf_buf *buf, t_ptf_toprint format, t_ptf_param param)
 	if (c)
 		ft_putnstr(buf, &c, 1);
 	else
-	{
-		dbuf_append(&buf->buf, "A");
-		dbuf_insert(&buf->buf, '\0', buf->buf.cursor - 1);
-		dbuf_substract(&buf->buf);
-	}
+		dbuf_insert(&buf->buf, buf->buf.cursor, '\0');
 	if (param.minus && param.padding > 0)
 		print_padding(buf, (param.zero ? '0' : ' '), param.padding -
 		(param.precision > 0 ? param.precision : 1));

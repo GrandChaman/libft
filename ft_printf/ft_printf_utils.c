@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:53:42 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 18:47:05 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 22:45:04 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void				ft_putnstr(t_ptf_buf *buf, const char *str, int stop)
 
 	i = -1;
 	tmp[1] = 0;
+	if (!stop)
+		stop = ft_strlen(str);
 	while (++i < stop)
 	{
 		tmp[0] = str[i];

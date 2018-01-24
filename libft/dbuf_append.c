@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 11:00:15 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 11:44:11 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 22:31:38 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		dbuf_append(t_dbuf *buf, char *to_append)
 			i += BUFF_SIZE;
 		tmp = ft_strnew(i);
 		buf->len = i;
-		ft_strcpy(tmp, buf->buf);
+		ft_memcpy(tmp, buf->buf, buf->cursor);
 		free(buf->buf);
 		buf->buf = tmp;
 	}

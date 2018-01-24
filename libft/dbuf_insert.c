@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 11:42:04 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 13:27:27 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 22:32:41 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int		dbuf_insert(t_dbuf *buf, unsigned long pos, char to_insert)
 {
 	char *tmp;
 
-	if (!buf || pos >= buf->cursor)
+	if (!buf || pos > buf->cursor)
 		return (LIBFT_ERR);
 	if (buf->cursor + 1 > buf->len)
 	{
 		tmp = ft_strnew(buf->len + BUFF_SIZE);
 		ft_memcpy(tmp, buf->buf, pos + 1);
 		tmp[pos] = to_insert;
-		ft_strcpy(tmp + pos + 1, buf->buf + pos);
+		ft_memcpy(tmp + pos + 1, buf->buf + pos, buf->cursor - (pos + 1));
 		free(buf->buf);
 		buf->len += BUFF_SIZE;
 		buf->buf = tmp;

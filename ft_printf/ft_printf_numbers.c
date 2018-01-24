@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 15:18:55 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 19:09:37 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 22:09:24 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	print_octal(t_ptf_buf *buf, t_ptf_toprint format, t_ptf_param param)
 	param.padding += (!param.precision && !n ? 1 : 0);
 	param.padding -= (param.hashtag && n ? 1 : 0);
 	handle_padding(buf, param, len, BEFORE);
-	if (param.hashtag && (n || !param.precision))
+	if (param.hashtag && ((n && param.precision <= len) || !param.precision))
 		print_padding(buf, '0', 1);
 	if (param.precision > 0)
 		print_padding(buf, '0', param.precision - len);
