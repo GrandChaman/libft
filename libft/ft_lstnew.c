@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 17:08:48 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/22 13:11:11 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/21 20:25:41 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 		el->content_size = 0;
 	}
 	el->next = NULL;
+	el->prev = NULL;
 	return (el);
 }

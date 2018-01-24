@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2017/12/22 13:58:22 by fle-roy          ###   ########.fr        #
+#    Updated: 2018/01/23 11:48:13 by fle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ ft_swap.c ft_tolower.c ft_toupper.c ft_atoi_base.c ft_iswhitespace.c \
 ft_btree_apply_infix.c ft_btree_apply_suffix.c ft_btree_apply_prefix.c \
 ft_btree_create_node.c ft_btree_insert_data.c ft_perror.c ft_btree_destroy.c \
 ft_btree_count_node.c ft_itoa_base.c ft_numlen.c ft_getenv.c ft_free2d.c \
-ft_str2ddup.c ft_haschar.c ft_lstcpy.c ft_free.c ft_strsplit_multi.c)
+ft_str2ddup.c ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c)
 
 SRCS_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf.c ft_printf_utils.c \
 		ft_printf_string.c ft_printf_parser.c \
@@ -79,5 +79,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@printf "[LIBFT_TOTAL] \033[1;31mCleaned .a!\033[0m\n"
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 .PHONY: all clean fclean re libft gnl printf

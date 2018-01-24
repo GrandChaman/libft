@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2017/12/22 13:59:28 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 10:32:41 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct			s_list
 	void				*content;
 	size_t				content_size;
 	struct s_list		*next;
+	struct s_list		*prev;
 }						t_list;
 
 typedef struct			s_param
@@ -47,6 +48,11 @@ typedef struct			s_btree {
 	struct s_btree		*left;
 	void				*item;
 }						t_btree;
+
+typedef struct			s_dbuf {
+	char				buf[BUFF_SIZE + 1];
+	unsigned short		cursor;
+}						t_dbuf;
 
 void					ft_bzero(void *s, size_t n);
 void					*ft_memset(void *dest, int ch, size_t count);
@@ -171,5 +177,6 @@ char					**ft_str2ddup(char **arr);
 int						ft_haschar(char *c, char ch);
 int						ft_addparam(char *correct, char *chain, char param);
 void					ft_free(void **tofree);
+void					ft_lstdestroy(t_list **list);
 
 #endif

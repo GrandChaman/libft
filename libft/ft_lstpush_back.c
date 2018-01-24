@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 17:09:32 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/11/08 14:22:46 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/21 20:25:55 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_lstpush_back(t_list **begin_list, void *data, size_t size)
 	while (cursor->next)
 		cursor = cursor->next;
 	cursor->next = tmp;
+	tmp->prev = cursor;
 }
