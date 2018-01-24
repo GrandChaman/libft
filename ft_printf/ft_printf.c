@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:38:11 by fle-roy           #+#    #+#             */
-/*   Updated: 2017/12/02 17:35:43 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/24 18:01:50 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 #include "ft_printf_parser.h"
 #include "libft.h"
 #include <stdarg.h>
+#include <unistd.h>
 
-int		handle_colors(int fd, const char *format, int *li, int *i)
+void	handle_colors(t_ptf_buf *buf, const char *format, int *li, int *i)
 {
 	int ii;
 	int len;
-	int res;
 
-	res = 0;
 	ii = -1;
 	len = *i + 1;
 	while (format[len] && format[len] != '}')
@@ -32,51 +31,48 @@ int		handle_colors(int fd, const char *format, int *li, int *i)
 			len - *i - 1))
 		{
 			if ((*i) - *li)
-				res += ft_putnstr(fd, format + *li, (*i) - *li);
-			res += ft_putnstr(fd, g_color_list[ii].code, 0);
+				ft_putnstr(buf, format + *li, (*i) - *li);
+			ft_putnstr(buf, g_color_list[ii].code, 0);
 			*li = len + 1;
 			*i = len;
 			break ;
 		}
-	return (res);
 }
 
-int		ft_printf_routine(int fd, const char *ft, va_list ap)
+int		ft_printf_routine(t_ptf_buf *buf, const char *format)
 {
-	int		i;
-	int		li;
-	int		tmp;
-	int		res;
+	int			i;
+	int			li;
 
-	res = 0;
 	li = 0;
 	i = -1;
-	while (ft[++i])
-		if (ft[i] == '%')
+	while (format[++i])
+		if (format[i] == '%')
 		{
-			if ((tmp = format_handler(fd, get_toprint(ft, li, i), &i, ap)) >= 0)
-				res += tmp;
-			else
-				return (-1);
+			format_handler(buf, get_toprint(format, li, i), &i);
 			li = i;
 			i--;
 		}
-		else if (ft[i] == '{')
-			res += handle_colors(fd, ft, &li, &i);
-	res += ft_putnstr(fd, ft + li,
-		(i && ft[i - 1] == '%' ? (i - li) - 1 : 0));
-	return (res);
+		else if (format[i] == '{')
+			handle_colors(buf, format, &li, &i);
+	dbuf_append(&buf->buf, (char*)format + li);
+	dbuf_print(&buf->buf, STDOUT_FILENO);
+	return (buf->buf.cursor);
 }
 
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		res;
+	t_ptf_buf	buf;
 
 	if (!format)
 		return (-1);
-	va_start(ap, format);
-	res = ft_printf_routine(1, format, ap);
+	va_start(buf.ap, format);
+	buf.fd = 1;
+	dbuf_init(&buf.buf);
+	res = ft_printf_routine(&buf, format);
+	dbuf_destroy(&buf.buf);
 	va_end(ap);
 	return (res);
 }
@@ -85,11 +81,15 @@ int		ft_fprintf(int fd, const char *format, ...)
 {
 	va_list	ap;
 	int		res;
+	t_ptf_buf	buf;
 
 	if (!format)
 		return (-1);
-	va_start(ap, format);
-	res = ft_printf_routine(fd, format, ap);
+	va_start(buf.ap, format);
+	buf.fd = fd;
+	dbuf_init(&buf.buf);
+	res = ft_printf_routine(&buf, format);
+	dbuf_destroy(&buf.buf);
 	va_end(ap);
 	return (res);
 }
