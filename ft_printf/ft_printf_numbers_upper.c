@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 15:18:55 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 18:23:19 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 15:07:13 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,29 @@
 #include "ft_printf_format_list.h"
 #include "libft.h"
 
-void	print_octal_upper(t_ptf_buf *buf, t_ptf_toprint format, t_ptf_param param)
+void	print_octal_upper(t_ptf_buf *buf, t_ptf_toprint format,
+	t_ptf_param param)
 {
 	param.lm = L;
 	print_octal(buf, format, param);
 }
 
-void	print_unsigned_upper(t_ptf_buf *buf, t_ptf_toprint format, t_ptf_param param)
+void	print_unsigned_upper(t_ptf_buf *buf, t_ptf_toprint format,
+	t_ptf_param param)
 {
 	param.lm = L;
 	print_unsigned(buf, format, param);
 }
 
-void	print_signed_upper(t_ptf_buf *buf, t_ptf_toprint format, t_ptf_param param)
+void	print_signed_upper(t_ptf_buf *buf, t_ptf_toprint format,
+	t_ptf_param param)
 {
 	param.lm = L;
 	print_signed(buf, format, param);
 }
 
-void	hex_handler(int mode, t_ptf_buf *buf, t_ptf_toprint format, t_ptf_param p)
+void	hex_handler(int mode, t_ptf_buf *buf, t_ptf_toprint format,
+	t_ptf_param p)
 {
 	unsigned long long	n;
 	int					len;

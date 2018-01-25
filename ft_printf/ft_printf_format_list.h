@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:25:43 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 18:23:41 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 15:06:22 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define ANSI_COLOR_B_CYAN     "\x1b[1;36m"
 # define ANSI_COLOR_RESET      "\x1b[0m"
 # define ANSI_DEL_LINE         "\r\x1b[K"
+
 enum							e_length_modifier {NONE, HH, H, LL, L, J, Z};
 
 typedef struct					s_length_modifier
@@ -41,7 +42,6 @@ typedef struct					s_length_modifier
 	enum e_length_modifier		code;
 
 }								t_length_modifier;
-
 
 typedef struct					s_color_code
 {
@@ -89,6 +89,114 @@ typedef struct					s_ptf_format
 
 }								t_ptf_format;
 
+typedef void					(*t_ft_printf_param)(const char *c,
+	t_ptf_param *p, int *i, va_list ap);
+
+void							parse_flags(const char *c, t_ptf_param *p,
+	int *i, va_list ap);
+void							parse_length_modifier(const char *c,
+	t_ptf_param *p, int *i, va_list ap);
+void							parse_numbers(const char *c, t_ptf_param *p,
+	int *i, va_list ap);
+int								skip_to_format(const char *str);
+void							init_param(t_ptf_param *param);
+t_ptf_toprint					get_toprint(const char *format, int start,
+	int stop);
+
+static t_ft_printf_param		g_param_list[] = {
+	parse_flags,
+	NULL,
+	NULL,
+	parse_flags,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	parse_numbers,
+	parse_flags,
+	NULL,
+	parse_flags,
+	parse_numbers,
+	NULL,
+	parse_flags,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	parse_numbers,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	parse_length_modifier,
+	NULL,
+	parse_length_modifier,
+	NULL,
+	parse_length_modifier,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	parse_length_modifier
+};
+
 static const t_length_modifier	g_length_modifier_list[] = {
 	{"hh", HH},
 	{"h", H},
@@ -99,39 +207,39 @@ static const t_length_modifier	g_length_modifier_list[] = {
 	{NULL, NONE}
 };
 
-void							hex_handler(int mode, t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param p);
+void							hex_handler(int mode, t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param p);
 
-void							print_string(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_char(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_pourcent(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_octal(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_unsigned(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_signed(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_hex(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_hex_upper(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
+void							print_string(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_char(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_pourcent(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_octal(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_unsigned(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_signed(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_hex(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_hex_upper(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
 void							print_unsigned_upper(t_ptf_buf *buf,
 	t_ptf_toprint format, t_ptf_param param);
-void							print_signed_upper(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_wchar(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_wstring(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_octal_upper(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_pointer(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param param);
-void							print_binary(t_ptf_buf *buf, t_ptf_toprint format,
-	t_ptf_param p);
+void							print_signed_upper(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_wchar(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_wstring(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_octal_upper(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_pointer(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param param);
+void							print_binary(t_ptf_buf *buf,
+	t_ptf_toprint format, t_ptf_param p);
 
 static const t_ptf_format g_format_list[] = {
 	{"c", print_char},

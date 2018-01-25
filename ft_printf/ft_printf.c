@@ -6,13 +6,12 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:38:11 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 18:01:50 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 15:07:00 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_utils.h"
-#include "ft_printf_parser.h"
 #include "libft.h"
 #include <stdarg.h>
 #include <unistd.h>
@@ -62,8 +61,8 @@ int		ft_printf_routine(t_ptf_buf *buf, const char *format)
 
 int		ft_printf(const char *format, ...)
 {
-	va_list	ap;
-	int		res;
+	va_list		ap;
+	int			res;
 	t_ptf_buf	buf;
 
 	if (!format)
@@ -79,8 +78,8 @@ int		ft_printf(const char *format, ...)
 
 int		ft_fprintf(int fd, const char *format, ...)
 {
-	va_list	ap;
-	int		res;
+	va_list		ap;
+	int			res;
 	t_ptf_buf	buf;
 
 	if (!format)
