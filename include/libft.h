@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/01/25 15:50:36 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 17:40:03 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ typedef struct			s_param
 	char				*args;
 	size_t				content_size;
 }						t_param;
+
+typedef struct			s_ft_ht_el
+{
+	size_t				content_size;
+	void				*value;
+	unsigned int		key;
+}						t_ft_ht_el;
+
+typedef struct			s_ft_ht
+{
+	s_ft_ht_el			*table;
+	unsigned int		size;
+}						t_ft_ht;
 
 typedef struct			s_btree {
 	struct s_btree		*parent;
@@ -193,4 +206,6 @@ int						ft_fprintf(int fd, const char *format, ...);
 int						ft_asprintf(char **ret, const char *format, ...);
 int						ft_snprintf(char *ret, size_t size, const char *format,
 	...);
+t_ft_ht					ht_init(unsigned int size);
+
 #endif
