@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:25:43 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/25 15:06:22 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 17:07:22 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ typedef struct					s_ptf_buf
 {
 	t_dbuf						buf;
 	va_list						ap;
-	unsigned char				fd;
-
 }								t_ptf_buf;
 
 typedef struct					s_ptf_param
@@ -195,16 +193,6 @@ static t_ft_printf_param		g_param_list[] = {
 	NULL,
 	NULL,
 	parse_length_modifier
-};
-
-static const t_length_modifier	g_length_modifier_list[] = {
-	{"hh", HH},
-	{"h", H},
-	{"ll", LL},
-	{"l", L},
-	{"j", J},
-	{"z", Z},
-	{NULL, NONE}
 };
 
 void							hex_handler(int mode, t_ptf_buf *buf,

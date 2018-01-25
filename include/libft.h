@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/01/24 16:43:46 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 15:50:36 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,6 @@ void					ft_btree_apply_suffix(t_btree *root,
 	void (*applyf)(void *));
 void					ft_btree_destroy(t_btree **root);
 int						ft_btree_count_node(t_btree *tree);
-int						ft_printf(const char *format, ...);
-int						ft_fprintf(int fd, const char *format, ...);
 void					ft_perror(char *title, char *error);
 char					*ft_itoa_base(unsigned long long nb, int base);
 unsigned int			ft_numlen(unsigned int nb);
@@ -190,5 +188,9 @@ int						dbuf_insert(t_dbuf *buf, unsigned long pos,
 int						dbuf_remove(t_dbuf *buf, unsigned long pos);
 int						dbuf_substract(t_dbuf *buf);
 int						dbuf_print(t_dbuf *buf, unsigned char fd);
-
+int						ft_printf(const char *format, ...);
+int						ft_fprintf(int fd, const char *format, ...);
+int						ft_asprintf(char **ret, const char *format, ...);
+int						ft_snprintf(char *ret, size_t size, const char *format,
+	...);
 #endif

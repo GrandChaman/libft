@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2018/01/25 14:24:18 by fle-roy          ###   ########.fr        #
+#    Updated: 2018/01/25 17:08:44 by fle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ ft_str2ddup.c ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c \
 dbuf_init.c dbuf_append.c dbuf_clear.c dbuf_insert.c dbuf_remove.c \
 dbuf_destroy.c dbuf_substract.c dbuf_print.c)
 
-SRC_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf.c ft_printf_utils.c \
-		ft_printf_string.c ft_printf_parser.c \
+SRC_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf_routine.c ft_printf.c \
+		ft_printf_utils.c ft_printf_string.c ft_printf_parser.c \
 		ft_printf_parameters.c ft_printf_utils2.c ft_printf_numbers.c \
 		ft_printf_utils3.c ft_printf_numbers_upper.c ft_printf_wstring.c \
 		ft_printf_utils4.c ft_printf_extract_dynamic_param.c \

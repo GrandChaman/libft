@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 09:55:55 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/24 18:47:17 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/01/25 15:37:49 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define WCHAR_3 240
 # define PADDING_BUF_SIZE 1024
 
+int					ft_printf_routine(t_ptf_buf *buf, const char *format);
 void				ft_putnstr(t_ptf_buf *buf, const char *str, int stop);
 int					ft_strccmp(const char *lhs, const char *rhs);
 int					ft_strnccmp(const char *lhs, const char *rhs, int max);
