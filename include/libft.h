@@ -6,16 +6,29 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/01/25 17:40:03 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/03/22 13:10:22 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
-# include <stdio.h>
+# define ANSI_COLOR_RED        "\x1b[31m"
+# define ANSI_COLOR_GREEN      "\x1b[32m"
+# define ANSI_COLOR_YELLOW     "\x1b[33m"
+# define ANSI_COLOR_BLUE       "\x1b[34m"
+# define ANSI_COLOR_MAGENTA    "\x1b[35m"
+# define ANSI_COLOR_CYAN       "\x1b[36m"
+# define ANSI_COLOR_B_RED      "\x1b[1;31m"
+# define ANSI_COLOR_B_GREEN    "\x1b[1;32m"
+# define ANSI_COLOR_B_YELLOW   "\x1b[1;33m"
+# define ANSI_COLOR_B_BLUE     "\x1b[1;34m"
+# define ANSI_COLOR_B_MAGENTA  "\x1b[1;35m"
+# define ANSI_COLOR_B_CYAN     "\x1b[1;36m"
+# define ANSI_COLOR_RESET      "\x1b[0m"
+# define ANSI_DEL_LINE         "\r\x1b[K"
 # define BUFF_SIZE 10
-# define PRGRM_NAME "minishell"
+# define PRGRM_NAME "21sh"
 # define LIBFT_OK 0
 # define LIBFT_ERR 1
 
@@ -44,19 +57,6 @@ typedef struct			s_param
 	size_t				content_size;
 }						t_param;
 
-typedef struct			s_ft_ht_el
-{
-	size_t				content_size;
-	void				*value;
-	unsigned int		key;
-}						t_ft_ht_el;
-
-typedef struct			s_ft_ht
-{
-	s_ft_ht_el			*table;
-	unsigned int		size;
-}						t_ft_ht;
-
 typedef struct			s_btree {
 	struct s_btree		*parent;
 	struct s_btree		*right;
@@ -70,6 +70,10 @@ typedef struct			s_dbuf {
 	unsigned long		len;
 }						t_dbuf;
 
+char					**ft_split_whitespaces(char *str);
+void					ft_lstappend(t_list **head, t_list *new);
+char					*ft_str3join(char const *s1, char const *s2,
+	char const *s3);
 void					ft_bzero(void *s, size_t n);
 void					*ft_memset(void *dest, int ch, size_t count);
 void					*ft_memcpy(void *dest, const void *src, size_t count);
@@ -82,6 +86,7 @@ int						ft_memcmp(const void *lhs, const void *rhs,
 size_t					ft_strlen(const char *str);
 char					*ft_strcpy(char *dest, const char *src);
 char					*ft_strdup(const char *str);
+char					*ft_strndup(const char *str, size_t n);
 char					*ft_strncpy(char *dest, const char *src, size_t count);
 size_t					ft_strlcat(char *dst, const char *src, size_t size);
 char					*ft_strcat(char *dest, const char *src);
@@ -117,6 +122,7 @@ void					ft_putnbr_fd(int n, int fd);
 void					ft_putstr(const char *s);
 void					ft_putnbr(int n);
 void					ft_putendl(const char *s);
+int						ft_strcommon(char *s1, char *s2);
 char					**ft_strsplit(char const *s, char c);
 char					**ft_strsplit_multi(const char *s, int (*c)(int));
 char					*ft_strsub(char const *s, unsigned int start,
@@ -142,7 +148,7 @@ int						ft_find_next_prime(int nb);
 void					ft_foreach(int *tab, int length, void (*f)(int));
 int						ft_isprime(int nb);
 int						ft_issort(int *tab, int length, int (*f)(int, int));
-t_list					*ft_lstat(t_list *begin_list, unsigned int nbr);
+t_list					*ft_lstat(t_list *begin_list, int nbr);
 t_list					*ft_lstfind(t_list *begin_list,
 	void *data_ref, int (*cmp)());
 void					ft_lstforeach_if(t_list *begin_list,
@@ -185,7 +191,6 @@ int						ft_btree_count_node(t_btree *tree);
 void					ft_perror(char *title, char *error);
 char					*ft_itoa_base(unsigned long long nb, int base);
 unsigned int			ft_numlen(unsigned int nb);
-const char				*ft_getenv(char *search, const char **env);
 void					ft_free2d(void **arr);
 char					**ft_str2ddup(char **arr);
 int						ft_haschar(char *c, char ch);
@@ -206,6 +211,6 @@ int						ft_fprintf(int fd, const char *format, ...);
 int						ft_asprintf(char **ret, const char *format, ...);
 int						ft_snprintf(char *ret, size_t size, const char *format,
 	...);
-t_ft_ht					ht_init(unsigned int size);
+int						ft_stralike(char *str1, char *str2, size_t len);
 
 #endif

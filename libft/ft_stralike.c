@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_stralike.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 17:29:24 by bluff             #+#    #+#             */
-/*   Updated: 2018/03/01 11:50:07 by vbaudot          ###   ########.fr       */
+/*   Created: 2018/03/21 16:36:02 by fle-roy           #+#    #+#             */
+/*   Updated: 2018/03/21 16:36:08 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int		ft_stralike(char *str1, char *str2, size_t len)
 {
-	size_t	i;
+	unsigned int i;
 
 	i = 0;
-	if (n == 0 || !s1 || !s2)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+	while (str1[i] && str2[i] && str1[i] == str2[i] && i < len)
 		i++;
-	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+	if (str1[i] == str2[i] && str1[i] == 0)
+		return (-1);
+	return (len - i);
 }
