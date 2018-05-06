@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/03/22 13:10:22 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/06 23:50:40 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct			s_gnl
 	int					ll;
 }						t_gnl;
 
-int						get_next_line(int const fd, char **line);
 
 typedef struct			s_list
 {
@@ -70,6 +69,160 @@ typedef struct			s_dbuf {
 	unsigned long		len;
 }						t_dbuf;
 
+typedef struct			s_cdbuf {
+	t_dbuf				dbuf;
+	unsigned int		cursor;
+}						t_cdbuf;
+
+typedef int 			(*t_rgxp_char_f)(t_cdbuf*,t_cdbuf*);
+
+typedef struct			s_rgxp_char {
+	t_rgxp_char_f		c;
+	t_rgxp_char_f		cb;
+	char				is_char;
+}						t_rgxp_char;
+
+// new
+
+static t_rgxp_char		g_rgxp_char_list[] = {
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0},
+	{NULL, NULL, 0}
+};
+
+void					ft_rgxp_load(t_cdbuf *regexp, t_cdbuf *text,
+	char *ori_regexp, char *ori_text);
+void					ft_rgxp_unload(t_cdbuf *regexp, t_cdbuf *text);
+int						ft_rgxp(char *regexp, char *text);
+
+// new
+
+int						get_next_line(int const fd, char **line);
 char					**ft_split_whitespaces(char *str);
 void					ft_lstappend(t_list **head, t_list *new);
 char					*ft_str3join(char const *s1, char const *s2,
