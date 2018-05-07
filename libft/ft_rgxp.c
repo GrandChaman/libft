@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/07 16:26:57 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/07 17:24:25 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc)
 		ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
 		if (c)
 			ret = c(rgxp, text, lc);
-		if (!ret)
+		if (ret <= 0)
 			return (ret);
 	}
 	else
@@ -51,7 +51,7 @@ int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
 	while (regexp.cursor < regexp.dbuf.cursor &&
 		(lchar_tmp = regexp.dbuf.buf[regexp.cursor]) > 0)
 	{
-		if (!(ret = ft_rgxp_backtrack(&regexp, &text, lchar)))
+		if ((ret = ft_rgxp_backtrack(&regexp, &text, lchar)) <= 0)
 			break ;
 		lchar = lchar_tmp;
 	}
@@ -71,15 +71,17 @@ int						ft_rgxp(char *regexp_ori, char *text_ori)
 	t_cdbuf	regexp;
 	t_cdbuf	text;
 	t_list	*tmp_res;
+	int		res;
 
 	tmp_res = NULL;
 	ft_rgxp_load(&regexp, &text, regexp_ori, text_ori);
+	res = 0;
 	while (text.cursor < text.dbuf.cursor)
 	{
-		if (ft_rgxp_routine(regexp, text, tmp_res))
-			;//ft_printf("Match at : %s\n", text.dbuf.buf + text.cursor);
+		if ((res = ft_rgxp_routine(regexp, text, tmp_res)) <= 0)
+			break ;
 		text.cursor++;
 	}
 	ft_rgxp_unload(&regexp, &text);
-	return (0);
+	return (res);
 }

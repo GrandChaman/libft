@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:52:03 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/06 23:54:39 by bluff            ###   ########.fr       */
+/*   Updated: 2018/05/07 17:05:47 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int argc, char **argv)
 {
 	if (argc != 3)
-		return (1);
+		return (argc);
 	ft_printf("Res : %d\n", ft_rgxp(argv[1], argv[2]));
 	return (0);
 }
