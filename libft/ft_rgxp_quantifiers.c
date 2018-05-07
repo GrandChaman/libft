@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:55:50 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/07 17:30:58 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/07 18:14:28 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	get_brace_param(t_pair *pair, int *lazy, t_cdbuf *rgxp)
 		*lazy = 1;
 	else
 		*lazy = 0;
-	rgxp->cursor += i - rgxp->cursor;
+	rgxp->cursor += (i - rgxp->cursor) + *lazy;
 	return (0);
 }
 
@@ -58,7 +58,7 @@ int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 	ft_printf("Brace {%d,%d}\n", pair.a, pair.b);
 	while (i < text->dbuf.cursor && text->dbuf.buf[text->cursor + i] == lchar
 		&& (i < pair.b || pair.b == 0))
-		if (i <= pair.a || !lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar))
+		if (i < pair.a || !lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar))
 			i++;
 		else
 			break ;
@@ -137,7 +137,7 @@ int		ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 	ltext = *text;
 	ft_printf("Quantifier : %c (Lazy : %s)\n", '?', lazy ? "Yes" : "No");
 	while (i < text->dbuf.cursor && text->dbuf.buf[text->cursor + i] == lchar)
-		if ((!lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar)) && i <= 1)
+		if ((!lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar)) && i < 1)
 			i++;
 		else
 			break ;
