@@ -6,36 +6,62 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/07 13:25:15 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/07 16:26:57 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
-	t_list *tmp_res)
+int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc)
 {
 	t_rgxp_char_f	c;
 	t_rgxp_char_f	cb;
 	int				ret;
+
+	ret = 0;
+	if (rgxp->cursor < rgxp->dbuf.cursor && rgxp->dbuf.buf[rgxp->cursor] > 0)
+	{
+		c = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor]].c;
+		cb = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor]].cb;
+		ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
+		if (c)
+			ret = c(rgxp, text, lc);
+		if (!ret)
+			return (ret);
+	}
+	else
+		return (1);
+	return (ret);
+}
+
+int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
+	t_list *tmp_res)
+{
+
+	int				ret;
 	char			lchar;
 	char			lchar_tmp;
+	unsigned int	ori_cursor;
 
 	regexp.cursor = 0;
 	lchar = 0;
 	(void)tmp_res;
+	ori_cursor = text.cursor;
 	while (regexp.cursor < regexp.dbuf.cursor &&
 		(lchar_tmp = regexp.dbuf.buf[regexp.cursor]) > 0)
 	{
-		c = g_rgxp_char_list[(int)regexp.dbuf.buf[regexp.cursor]].c;
-		cb = g_rgxp_char_list[(int)regexp.dbuf.buf[regexp.cursor]].cb;
-		ft_printf("At : %s\n", text.dbuf.buf + text.cursor);
-		if (c)
-			ret = c(&regexp, &text, lchar);
-		if (!ret)
+		if (!(ret = ft_rgxp_backtrack(&regexp, &text, lchar)))
 			break ;
 		lchar = lchar_tmp;
-		text.cursor += ret;
+	}
+	char *res;
+
+	if (ret)
+	{
+		res = ft_strndup(text.dbuf.buf + ori_cursor, text.cursor - ori_cursor);
+		ft_printf("Match : %s\n", res);
+		free(res);
 	}
 	return (ret);
 }
@@ -51,7 +77,7 @@ int						ft_rgxp(char *regexp_ori, char *text_ori)
 	while (text.cursor < text.dbuf.cursor)
 	{
 		if (ft_rgxp_routine(regexp, text, tmp_res))
-			ft_printf("Match at : %s\n", text.dbuf.buf + text.cursor);
+			;//ft_printf("Match at : %s\n", text.dbuf.buf + text.cursor);
 		text.cursor++;
 	}
 	ft_rgxp_unload(&regexp, &text);

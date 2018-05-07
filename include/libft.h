@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/07 13:21:17 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/07 15:23:03 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int						ft_rgxp_normal_cmp(t_cdbuf *regexp,
 int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
 int						ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
 int						ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
+int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc);
 
 
 static t_rgxp_char		g_rgxp_char_list[] = {
@@ -135,7 +136,7 @@ static t_rgxp_char		g_rgxp_char_list[] = {
 	{ft_rgxp_normal_cmp, ft_rgxp_normal_cmp, 1}, // (
 	{ft_rgxp_normal_cmp, ft_rgxp_normal_cmp, 1}, // )
 	{ft_rgxp_star, ft_rgxp_normal_cmp, 1}, // *
-	{ft_rgxp_star, ft_rgxp_normal_cmp, 1}, // +
+	{ft_rgxp_plus, ft_rgxp_normal_cmp, 1}, // +
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, ft_rgxp_normal_cmp, 1}, // -
 	{ft_rgxp_normal_cmp, ft_rgxp_normal_cmp, 1}, // .
@@ -154,8 +155,8 @@ static t_rgxp_char		g_rgxp_char_list[] = {
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
-	{ft_rgxp_qmark, ft_rgxp_normal_cmp, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_qmark, ft_rgxp_normal_cmp, 0}, // ?
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
