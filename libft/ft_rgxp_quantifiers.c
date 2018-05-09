@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:55:50 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/09 14:23:17 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 17:37:20 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,19 @@ int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 	t_pair	pair;
 
 	if ((i = get_brace_param(&pair, &lazy, rgxp, inc)))
-		return (i); //TODO Error
+		return (i);
 	lrgxp = *rgxp;
+	while (!inc && lrgxp.dbuf.buf[lrgxp.cursor] != '}')
+		lrgxp.cursor++;
+	lrgxp.cursor += (lrgxp.dbuf.buf[lrgxp.cursor] == '?' ? 2 : 1);
 	ltext = *text;
 	ft_printf("Quantifier : %s (Lazy : %s)\n", "{x,[x]}", lazy ? "Yes" : "No");
 	ft_printf("Brace {%d,%d}\n", pair.a, pair.b);
-	while (i < text->dbuf.cursor && text->dbuf.buf[text->cursor + i] == lchar
+	while (text->cursor + i < text->dbuf.cursor &&
+		text->dbuf.buf[text->cursor] == lchar
 		&& (i < pair.b || pair.b == 0))
-		if (i < pair.a || !lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar))
+		if (i < pair.a || !lazy ||
+			!ft_rgxp_backtrack(&lrgxp, &ltext, lchar, RGXP_NO_INC))
 			i++;
 		else
 			break ;
@@ -80,10 +85,12 @@ int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 	if (rgxp->dbuf.buf[rgxp->cursor + 1] == '?')
 		lazy = 1;
 	lrgxp = *rgxp;
+	lrgxp.cursor += 1 + lazy;
 	ltext = *text;
 	ft_printf("Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
-	while (i < text->dbuf.cursor && text->dbuf.buf[text->cursor + i] == lchar)
-		if (!lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar))
+	while (text->cursor + i < text->dbuf.cursor &&
+		text->dbuf.buf[text->cursor + i] == lchar)
+		if (!lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar, RGXP_NO_INC))
 			i++;
 		else
 			break ;
@@ -104,13 +111,15 @@ int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 
 	i = 0;
 	lazy = 0;
-	if (rgxp->dbuf.buf[rgxp->cursor] == '?')
+	if (rgxp->dbuf.buf[rgxp->cursor + 1] == '?')
 		lazy = 1;
 	lrgxp = *rgxp;
+	lrgxp.cursor += 1 + lazy;
 	ltext = *text;
 	ft_printf("Quantifier : %c (Lazy : %s)\n", '+', lazy ? "Yes" : "No");
-	while (i < text->dbuf.cursor && text->dbuf.buf[text->cursor + i] == lchar)
-		if (i == 0 || !lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar))
+	while (text->cursor + i < text->dbuf.cursor &&
+		text->dbuf.buf[text->cursor + i] == lchar)
+		if (i == 0 || !lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar, RGXP_NO_INC))
 			i++;
 		else
 			break ;
@@ -125,26 +134,23 @@ int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 int		ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 {
 	int i;
-	int	lazy;
 	t_cdbuf	lrgxp;
 	t_cdbuf	ltext;
 
 	i = 0;
-	lazy = 0;
-	ft_printf("Quantifier : %c\n", '?');
-	if (rgxp->dbuf.buf[rgxp->cursor + 1] == '?')
-		lazy++;
 	lrgxp = *rgxp;
+	lrgxp.cursor += 1;
 	ltext = *text;
-	ft_printf("Quantifier : %c (Lazy : %s)\n", '?', lazy ? "Yes" : "No");
-	while (i < text->dbuf.cursor && text->dbuf.buf[text->cursor + i] == lchar)
-		if ((!lazy || !ft_rgxp_backtrack(&lrgxp, &ltext, lchar)) && i < 1)
+	ft_printf("Quantifier : %c\n", '?');
+	while (text->cursor + i < text->dbuf.cursor &&
+		text->dbuf.buf[text->cursor + i] == lchar)
+		if (!ft_rgxp_backtrack(&lrgxp, &ltext, lchar, RGXP_NO_INC) && i < 1)
 			i++;
 		else
 			break ;
 	if (inc)
 	{
-		rgxp->cursor += 1 + lazy;
+		rgxp->cursor += 1;
 		text->cursor += i;
 	}
 	return ((i <= 1));

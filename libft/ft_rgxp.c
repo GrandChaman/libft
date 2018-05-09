@@ -6,14 +6,14 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/09 14:24:49 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 15:35:17 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc)
+int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc, char inc)
 {
 	t_rgxp_char_f	c;
 	t_rgxp_char_f	cb;
@@ -25,11 +25,11 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc)
 		c = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor]].c;
 		ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
 		if (c && rgxp->dbuf.buf[rgxp->cursor] != '\\')
-			ret = c(rgxp, text, lc, RGXP_INC);
+			ret = c(rgxp, text, lc, inc);
 		else if (rgxp->cursor + 1 < rgxp->dbuf.cursor &&
 			(cb = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor + 1]].cb) &&
 			rgxp->dbuf.buf[rgxp->cursor] == '\\')
-			ret = cb(rgxp, text, lc, RGXP_INC);
+			ret = cb(rgxp, text, lc, inc);
 		if (ret <= 0)
 			return (ret);
 	}
@@ -54,7 +54,7 @@ int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
 	while (regexp.cursor < regexp.dbuf.cursor &&
 		(lchar_tmp = regexp.dbuf.buf[regexp.cursor]) > 0)
 	{
-		if ((ret = ft_rgxp_backtrack(&regexp, &text, lchar)) <= 0)
+		if ((ret = ft_rgxp_backtrack(&regexp, &text, lchar, RGXP_INC)) <= 0)
 			break ;
 		lchar = lchar_tmp;
 	}
