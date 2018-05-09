@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/07 17:24:25 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 14:24:49 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc)
 	if (rgxp->cursor < rgxp->dbuf.cursor && rgxp->dbuf.buf[rgxp->cursor] > 0)
 	{
 		c = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor]].c;
-		cb = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor]].cb;
 		ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
-		if (c)
-			ret = c(rgxp, text, lc);
+		if (c && rgxp->dbuf.buf[rgxp->cursor] != '\\')
+			ret = c(rgxp, text, lc, RGXP_INC);
+		else if (rgxp->cursor + 1 < rgxp->dbuf.cursor &&
+			(cb = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor + 1]].cb) &&
+			rgxp->dbuf.buf[rgxp->cursor] == '\\')
+			ret = cb(rgxp, text, lc, RGXP_INC);
 		if (ret <= 0)
 			return (ret);
 	}
@@ -78,7 +81,7 @@ int						ft_rgxp(char *regexp_ori, char *text_ori)
 	res = 0;
 	while (text.cursor < text.dbuf.cursor)
 	{
-		if ((res = ft_rgxp_routine(regexp, text, tmp_res)) <= 0)
+		if ((res = ft_rgxp_routine(regexp, text, tmp_res)) < 0)
 			break ;
 		text.cursor++;
 	}

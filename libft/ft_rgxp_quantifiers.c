@@ -6,13 +6,13 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:55:50 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/07 18:14:28 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 14:23:17 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_brace_param(t_pair *pair, int *lazy, t_cdbuf *rgxp)
+static int	get_brace_param(t_pair *pair, int *lazy, t_cdbuf *rgxp, char inc)
 {
 	int i;
 	int tmp;
@@ -37,12 +37,13 @@ static int	get_brace_param(t_pair *pair, int *lazy, t_cdbuf *rgxp)
 		*lazy = 1;
 	else
 		*lazy = 0;
-	rgxp->cursor += (i - rgxp->cursor) + *lazy;
+	if (inc)
+		rgxp->cursor += (i - rgxp->cursor) + *lazy;
 	return (0);
 }
 
 
-int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
+int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 {
 	int i;
 	int	lazy;
@@ -50,7 +51,7 @@ int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 	t_cdbuf	ltext;
 	t_pair	pair;
 
-	if ((i = get_brace_param(&pair, &lazy, rgxp)))
+	if ((i = get_brace_param(&pair, &lazy, rgxp, inc)))
 		return (i); //TODO Error
 	lrgxp = *rgxp;
 	ltext = *text;
@@ -62,11 +63,12 @@ int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 			i++;
 		else
 			break ;
-	text->cursor += i;
+	if (inc)
+		text->cursor += i;
 	return (i);
 }
 
-int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
+int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 {
 	int i;
 	int	lazy;
@@ -75,10 +77,8 @@ int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 
 	i = 0;
 	lazy = 0;
-	while (rgxp->dbuf.buf[rgxp->cursor] == '*')
-		rgxp->cursor++;
-	if (rgxp->dbuf.buf[rgxp->cursor] == '?' && (lazy = 1))
-		rgxp->cursor++;
+	if (rgxp->dbuf.buf[rgxp->cursor + 1] == '?')
+		lazy = 1;
 	lrgxp = *rgxp;
 	ltext = *text;
 	ft_printf("Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
@@ -87,13 +87,15 @@ int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 			i++;
 		else
 			break ;
-	if (!i)
-		rgxp->cursor++;
-	text->cursor += i;
+	if (inc)
+	{
+		rgxp->cursor += 1 + lazy;
+		text->cursor += i;
+	}
 	return (i + 1);
 }
 
-int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
+int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 {
 	int i;
 	int	lazy;
@@ -102,10 +104,8 @@ int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 
 	i = 0;
 	lazy = 0;
-	while (rgxp->dbuf.buf[rgxp->cursor] == '+')
-		rgxp->cursor++;
-	if (rgxp->dbuf.buf[rgxp->cursor] == '?' && (lazy = 1))
-		rgxp->cursor++;
+	if (rgxp->dbuf.buf[rgxp->cursor] == '?')
+		lazy = 1;
 	lrgxp = *rgxp;
 	ltext = *text;
 	ft_printf("Quantifier : %c (Lazy : %s)\n", '+', lazy ? "Yes" : "No");
@@ -114,11 +114,15 @@ int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 			i++;
 		else
 			break ;
-	text->cursor += i;
+	if (inc)
+	{
+		rgxp->cursor += 1 + lazy;
+		text->cursor += i;
+	}
 	return (i);
 }
 
-int		ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
+int		ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 {
 	int i;
 	int	lazy;
@@ -126,13 +130,10 @@ int		ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 	t_cdbuf	ltext;
 
 	i = 0;
-	lazy = -1;
+	lazy = 0;
 	ft_printf("Quantifier : %c\n", '?');
-	while (rgxp->dbuf.buf[rgxp->cursor] == '?')
-	{
-		rgxp->cursor++;
-		lazy = (lazy < 0 ? 0 : 1);
-	}
+	if (rgxp->dbuf.buf[rgxp->cursor + 1] == '?')
+		lazy++;
 	lrgxp = *rgxp;
 	ltext = *text;
 	ft_printf("Quantifier : %c (Lazy : %s)\n", '?', lazy ? "Yes" : "No");
@@ -141,6 +142,10 @@ int		ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar)
 			i++;
 		else
 			break ;
-	text->cursor += i;
+	if (inc)
+	{
+		rgxp->cursor += 1 + lazy;
+		text->cursor += i;
+	}
 	return ((i <= 1));
 }

@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/07 17:19:30 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 14:29:50 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct			s_cdbuf {
 	unsigned int		cursor;
 }						t_cdbuf;
 
-typedef int 			(*t_rgxp_char_f)(t_cdbuf*,t_cdbuf*,char);
+typedef int 			(*t_rgxp_char_f)(t_cdbuf*,t_cdbuf*,char,char);
 
 typedef struct			s_rgxp_char {
 	t_rgxp_char_f		c;
@@ -90,17 +90,22 @@ typedef struct			s_pair {
 // new
 
 int						ft_rgxp_normal_cmp(t_cdbuf *regexp,
-	t_cdbuf *text, char lchar);
-int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
-int						ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
-int						ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
+	t_cdbuf *text, char lchar, char inc);
+int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
+int						ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
+int						ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
 int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc);
-int						ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar);
+int						ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
+int						ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
+
+# define RGXP_INC 1
+# define RGXP_NO_INC 0
 
 # define E_RGXP_BRACE_NO_FIRST_MEMBER -1
 # define E_RGXP_BRACE_BAD_SEPARATOR -2
 # define E_RGXP_BRACE_NO_END -3
 # define E_RGXP_BRACE_BAD_RANGE -4
+# define E_RGXP_BAD_BACKLASH_ECP -5
 
 static t_rgxp_char		g_rgxp_char_list[] = {
 	{NULL, NULL, 0},
@@ -171,6 +176,7 @@ static t_rgxp_char		g_rgxp_char_list[] = {
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, ft_rgxp_bckslash_d, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
@@ -202,8 +208,7 @@ static t_rgxp_char		g_rgxp_char_list[] = {
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
-	{ft_rgxp_normal_cmp, NULL, 0},
-	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, ft_rgxp_bckslash_d, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
