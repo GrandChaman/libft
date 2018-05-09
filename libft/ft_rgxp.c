@@ -6,14 +6,14 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/09 15:35:17 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 18:40:00 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc, char inc)
+int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, t_rgxp_char_f *pfunc, char inc)
 {
 	t_rgxp_char_f	c;
 	t_rgxp_char_f	cb;
@@ -25,11 +25,17 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc, char inc)
 		c = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor]].c;
 		ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
 		if (c && rgxp->dbuf.buf[rgxp->cursor] != '\\')
-			ret = c(rgxp, text, lc, inc);
+		{
+			ret = c(rgxp, text, *pfunc, inc);
+			*pfunc = c;
+		}
 		else if (rgxp->cursor + 1 < rgxp->dbuf.cursor &&
 			(cb = g_rgxp_char_list[(int)rgxp->dbuf.buf[rgxp->cursor + 1]].cb) &&
 			rgxp->dbuf.buf[rgxp->cursor] == '\\')
-			ret = cb(rgxp, text, lc, inc);
+		{
+			ret = cb(rgxp, text, *pfunc, inc);
+			*pfunc = cb;
+		}
 		if (ret <= 0)
 			return (ret);
 	}
@@ -43,21 +49,17 @@ int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
 {
 
 	int				ret;
-	char			lchar;
-	char			lchar_tmp;
+	t_rgxp_char_f	pfunc;
 	unsigned int	ori_cursor;
 
 	regexp.cursor = 0;
-	lchar = 0;
+	pfunc = NULL;
 	(void)tmp_res;
 	ori_cursor = text.cursor;
 	while (regexp.cursor < regexp.dbuf.cursor &&
-		(lchar_tmp = regexp.dbuf.buf[regexp.cursor]) > 0)
-	{
-		if ((ret = ft_rgxp_backtrack(&regexp, &text, lchar, RGXP_INC)) <= 0)
+		regexp.dbuf.buf[regexp.cursor] > 0)
+		if ((ret = ft_rgxp_backtrack(&regexp, &text, &pfunc, RGXP_INC)) <= 0)
 			break ;
-		lchar = lchar_tmp;
-	}
 	char *res;
 
 	if (ret)

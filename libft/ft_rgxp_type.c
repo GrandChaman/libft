@@ -6,18 +6,18 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:33:16 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/09 17:43:23 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 18:36:16 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
+int			ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
 {
 	int res;
 
 	res = 1;
-	(void)lchar;
+	(void)pfunc;
 	if (text->dbuf.buf[text->cursor] == '\n')
 		res = 0;
 	if (inc)
@@ -28,13 +28,13 @@ int			ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc)
 	return (res);
 }
 
-int			ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, char lchar,
+int			ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc,
 	char inc)
 {
 	int	res;
 
 	res = 0;
-	(void)lchar;
+	(void)pfunc;
 	if (rgxp->cursor + 1 >= rgxp->dbuf.cursor)
 		return (E_RGXP_BAD_BACKLASH_ECP);
 	if (rgxp->dbuf.buf[rgxp->cursor + 1] == 'd')
@@ -49,13 +49,13 @@ int			ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, char lchar,
 	return (res);
 }
 
-int			ft_rgxp_bckslash_s(t_cdbuf *rgxp, t_cdbuf *text, char lchar,
+int			ft_rgxp_bckslash_s(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc,
 	char inc)
 {
 	int	res;
 
 	res = 0;
-	(void)lchar;
+	(void)pfunc;
 	if (rgxp->cursor + 1 >= rgxp->dbuf.cursor)
 		return (E_RGXP_BAD_BACKLASH_ECP);
 	if (rgxp->dbuf.buf[rgxp->cursor + 1] == 's')
@@ -70,13 +70,13 @@ int			ft_rgxp_bckslash_s(t_cdbuf *rgxp, t_cdbuf *text, char lchar,
 	return (res);
 }
 
-int			ft_rgxp_bckslash_w(t_cdbuf *rgxp, t_cdbuf *text, char lchar,
+int			ft_rgxp_bckslash_w(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc,
 	char inc)
 {
 	int	res;
 
 	res = 0;
-	(void)lchar;
+	(void)pfunc;
 	if (rgxp->cursor + 1 >= rgxp->dbuf.cursor)
 		return (E_RGXP_BAD_BACKLASH_ECP);
 	if (rgxp->dbuf.buf[rgxp->cursor + 1] == 'w')

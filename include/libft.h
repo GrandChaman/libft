@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/09 17:45:10 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/09 18:39:43 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ typedef struct			s_cdbuf {
 	unsigned int		cursor;
 }						t_cdbuf;
 
-typedef int 			(*t_rgxp_char_f)(t_cdbuf*,t_cdbuf*,char,char);
+typedef int 			(*t_rgxp_char_f)(t_cdbuf*,t_cdbuf*,void*,char);
+
 
 typedef struct			s_rgxp_char {
 	t_rgxp_char_f		c;
@@ -90,16 +91,16 @@ typedef struct			s_pair {
 // new
 
 int						ft_rgxp_normal_cmp(t_cdbuf *regexp,
-	t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, char lc, char inc);
-int						ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_bckslash_s(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_bckslash_w(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
-int						ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
+	t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, t_rgxp_char_f *pfunc, char inc);
+int						ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_bckslash_s(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_bckslash_w(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 
 
 # define RGXP_INC 1
@@ -110,6 +111,7 @@ int						ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, char lchar, char inc);
 # define E_RGXP_BRACE_NO_END -3
 # define E_RGXP_BRACE_BAD_RANGE -4
 # define E_RGXP_BAD_BACKLASH_ECP -5
+# define E_RGXP_QUANTIFIER_ON_NULL -6
 
 static t_rgxp_char		g_rgxp_char_list[] = {
 	{NULL, NULL, 0},
