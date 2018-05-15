@@ -38,10 +38,10 @@ ft_swap.c ft_tolower.c ft_toupper.c ft_atoi_base.c ft_iswhitespace.c \
 ft_btree_apply_infix.c ft_btree_apply_suffix.c ft_btree_apply_prefix.c \
 ft_btree_create_node.c ft_btree_insert_data.c ft_perror.c ft_btree_destroy.c \
 ft_btree_count_node.c ft_itoa_base.c ft_numlen.c ft_getenv.c ft_free2d.c \
-ft_str2ddup.c ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c \
+ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c \
 dbuf_init.c dbuf_append.c dbuf_clear.c dbuf_insert.c dbuf_remove.c \
-dbuf_destroy.c dbuf_substract.c dbuf_print.c ft_str3join.c ft_lstappend.c \
-ft_strndup.c ft_stralike.c)
+dbuf_destroy.c dbuf_substract.c dbuf_print.c ft_strndup.c ft_stralike.c \
+ft_strtrim.c)
 
 SRC_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf_routine.c ft_printf.c \
 		ft_printf_utils.c ft_printf_string.c ft_printf_parser.c \
