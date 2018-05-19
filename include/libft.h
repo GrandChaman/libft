@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/09 18:39:43 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/19 18:05:48 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct			s_pair {
 }						t_pair;
 
 // new
-
+t_rgxp_char_f			ft_rgxp_get_pfunc(t_cdbuf *rgxp);
 int						ft_rgxp_normal_cmp(t_cdbuf *regexp,
 	t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);

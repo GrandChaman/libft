@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:55:50 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/09 18:51:04 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/19 18:41:55 by bluff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,33 @@ int		ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
 	return (i);
 }
 
+static long	ft_rgxp_star_local(t_cdbuf *lrgxp, t_cdbuf *ltext,
+	t_rgxp_char_f pfunc, int lazy)
+{
+	t_rgxp_char_f	npfunc;
+	long			lres;
+
+	npfunc = NULL;
+	lres = -1;
+	if (lrgxp->cursor + 2 + lazy < lrgxp->dbuf.cursor)
+	{
+		lrgxp->cursor += 2 + lazy;
+		npfunc = ft_rgxp_get_pfunc(lrgxp);
+	}
+	ft_printf("Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
+	while (ltext->cursor < ltext->dbuf.cursor &&
+		((t_rgxp_char_f)pfunc)(lrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
+	{
+		if (npfunc && npfunc(lrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
+				lres = ltext->cursor;
+		if (!lazy)
+			ltext->cursor++;
+		else
+			break ;
+	}
+	return (lres);
+}
+
 int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
 {
 	int i;
@@ -90,18 +117,14 @@ int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
 		lazy = 1;
 	lrgxp = *rgxp;
 	ltext = *text;
+	ltext.cursor -= (text->cursor > 0 ? 1 : 0);
+	text->cursor -= (inc && text->cursor > 0 ? 1 : 0);
 	lrgxp.cursor--;
-	ft_printf("Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
-	while (ltext.cursor < ltext.dbuf.cursor &&
-		((t_rgxp_char_f)pfunc)(&lrgxp, &ltext, pfunc, RGXP_NO_INC) > 0)
-		if (!lazy)
-			ltext.cursor++;
-		else
-			break ;
+	i = ft_rgxp_star_local(&lrgxp, &ltext, pfunc, lazy);
 	if (inc)
 	{
 		rgxp->cursor += 1 + lazy;
-		text->cursor += ltext.cursor - text->cursor;
+		text->cursor += (i < 0 ? ltext.cursor : i) - text->cursor;
 	}
 	return (i + 1);
 }
