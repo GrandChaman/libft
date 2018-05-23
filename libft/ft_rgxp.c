@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/19 18:06:36 by bluff            ###   ########.fr       */
+/*   Updated: 2018/05/23 17:57:27 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, t_rgxp_char_f *pfunc, c
 
 	ret = 0;
 	ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
-	tmp = ft_rgxp_get_pfunc(rgxp);
+	tmp = ft_rgxp_get_pfunc(*rgxp);
 	if (tmp)
 	{
+		ft_rgxp_get_npfunc(rgxp, pfunc, &tmp);
 		ret = tmp(rgxp, text, *pfunc, inc);
 		*pfunc = tmp;
-		if (ret <= 0)
-			return (ret);
 	}
 	else
 		return (1);
@@ -34,12 +33,12 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, t_rgxp_char_f *pfunc, c
 }
 
 int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
-	t_list *tmp_res)
+	t_list *tmp_res, t_list **res)
 {
-
 	int				ret;
 	t_rgxp_char_f	pfunc;
 	unsigned int	ori_cursor;
+	t_str_piece		tmp;
 
 	regexp.cursor = 0;
 	pfunc = NULL;
@@ -49,18 +48,17 @@ int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
 		regexp.dbuf.buf[regexp.cursor] > 0)
 		if ((ret = ft_rgxp_backtrack(&regexp, &text, &pfunc, RGXP_INC)) <= 0)
 			break ;
-	char *res;
 
-	if (ret)
+	if (ret && (tmp.len = text.cursor - ori_cursor))
 	{
-		res = ft_strndup(text.dbuf.buf + ori_cursor, text.cursor - ori_cursor);
-		ft_printf("Match : %s\n", res);
-		free(res);
+		tmp.start = ori_cursor;
+		ft_lstpush_back(res, &tmp, sizeof(t_str_piece));
 	}
 	return (ret);
 }
 
-int						ft_rgxp(char *regexp_ori, char *text_ori)
+int						ft_rgxp(char *regexp_ori, char *text_ori,
+	t_list **res_list)
 {
 	t_cdbuf	regexp;
 	t_cdbuf	text;
@@ -72,7 +70,7 @@ int						ft_rgxp(char *regexp_ori, char *text_ori)
 	res = 0;
 	while (text.cursor < text.dbuf.cursor)
 	{
-		if ((res = ft_rgxp_routine(regexp, text, tmp_res)) < 0)
+		if ((res = ft_rgxp_routine(regexp, text, tmp_res, res_list)) < 0)
 			break ;
 		text.cursor++;
 	}

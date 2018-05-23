@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rgxp_normal_cmp.c                               :+:      :+:    :+:   */
+/*   ft_isquantifier.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 12:32:40 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/23 18:12:29 by fle-roy          ###   ########.fr       */
+/*   Created: 2018/05/23 17:32:06 by fle-roy           #+#    #+#             */
+/*   Updated: 2018/05/23 17:33:24 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_rgxp_normal_cmp(t_cdbuf *regexp, t_cdbuf *text, void *pfunc, char inc)
+int		ft_isquantifier(int c)
 {
-	int res;
-
-	(void)pfunc;
-	res = (regexp->dbuf.buf[regexp->cursor] == text->dbuf.buf[text->cursor]);
-	ft_printf("Comparing : %.5s == %.5s\n", regexp->dbuf.buf + regexp->cursor,
-	text->dbuf.buf + text->cursor);
-	if (inc)
-	{
-		regexp->cursor++;
-		text->cursor++;
-	}
-	return (res);
+	return (c == '*' || c == '+' || c == '?' || c == '{');
 }

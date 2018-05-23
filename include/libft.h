@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/19 18:05:48 by bluff            ###   ########.fr       */
+/*   Updated: 2018/05/23 17:46:55 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,16 @@ typedef struct			s_pair {
 	int					b;
 }						t_pair;
 
+typedef struct			s_str_piece {
+	unsigned int		start;
+	unsigned int		len;
+}						t_str_piece;
+
 // new
-t_rgxp_char_f			ft_rgxp_get_pfunc(t_cdbuf *rgxp);
+int						ft_isquantifier(int c);
+void					ft_rgxp_get_npfunc(t_cdbuf *rgxp,
+	t_rgxp_char_f *pfunc, t_rgxp_char_f *cfunc);
+t_rgxp_char_f			ft_rgxp_get_pfunc(t_cdbuf rgxp);
 int						ft_rgxp_normal_cmp(t_cdbuf *regexp,
 	t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
@@ -247,7 +255,7 @@ static t_rgxp_char		g_rgxp_char_list[] = {
 void					ft_rgxp_load(t_cdbuf *regexp, t_cdbuf *text,
 	char *ori_regexp, char *ori_text);
 void					ft_rgxp_unload(t_cdbuf *regexp, t_cdbuf *text);
-int						ft_rgxp(char *regexp, char *text);
+int						ft_rgxp(char *regexp, char *text, t_list **res);
 
 // new
 

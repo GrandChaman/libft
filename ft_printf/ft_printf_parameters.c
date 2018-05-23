@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:46:22 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/01/25 13:56:23 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/23 19:23:47 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void			parse_numbers(const char *c, t_ptf_param *p,
 			p->precision = ft_atoi(c + 1);
 		else
 			p->precision = 0;
-		len = ft_nblen(p->precision) + 1;
+		len = (*(c + 1) == '*' ? 1 : ft_nblen(p->precision)) + 1;
 	}
 	else if (*c == '*')
 	{
