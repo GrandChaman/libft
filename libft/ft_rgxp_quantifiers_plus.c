@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 17:09:06 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/24 17:39:53 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:30:36 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,32 @@
 static long	ft_rgxp_plus_local(t_cdbuf *lrgxp, t_cdbuf *ltext,
 	t_rgxp_char_f pfunc, int lazy)
 {
-	t_rgxp_char_f	npfunc;
+	t_rgxp_char_f	nfunc;
 	long			lres;
 	t_cdbuf			nrgxp;
-	unsigned int	i;
+	int				i;
 
-	i = 0;
-	npfunc = NULL;
+	nfunc = NULL;
 	lres = -1;
 	if (lrgxp->cursor + 2 + lazy < lrgxp->dbuf.cursor)
 	{
 		nrgxp = (t_cdbuf){.cursor = lrgxp->cursor + 2 + lazy,
 			.dbuf = lrgxp->dbuf};
-		npfunc = ft_rgxp_get_pfunc(nrgxp);
+		nfunc = ft_rgxp_get_pfunc(nrgxp);
 	}
-	ft_printf("Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
+	i = 0;
+	ft_fprintf(2, "Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
 	while (ltext->cursor < ltext->dbuf.cursor &&
 		((t_rgxp_char_f)pfunc)(lrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
 	{
-		if (npfunc && npfunc(&nrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
-				lres = ltext->cursor;
-		if (!lazy)
-			ltext->cursor++;
-		else
-			break ;
+		if (nfunc && nfunc(&nrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
+			lres = ltext->cursor;
+		ltext->cursor++;
 		i++;
+		if ((lazy && lres > 0) || (lazy && !nfunc))
+			break ;
 	}
-	return (i > 0 && lres);
+	return (i > 0 ? lres : 0);
 }
 
 int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
@@ -62,9 +61,7 @@ int		ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
 	if (inc)
 	{
 		rgxp->cursor += 1 + lazy;
-		ft_printf("Before : %d - %s\n", text->cursor, text->dbuf.buf + text->cursor);
 		text->cursor += (i < 0 ? ltext.cursor : i) - text->cursor;
-		ft_printf("After : %d - %s\n", text->cursor, text->dbuf.buf + text->cursor);
 	}
-	return (1);
+	return (i < 0 ? 1 : i);
 }

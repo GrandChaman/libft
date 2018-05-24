@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:32:40 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/23 18:12:29 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:30:51 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_rgxp_normal_cmp(t_cdbuf *regexp, t_cdbuf *text, void *pfunc, char inc)
 
 	(void)pfunc;
 	res = (regexp->dbuf.buf[regexp->cursor] == text->dbuf.buf[text->cursor]);
-	ft_printf("Comparing : %.5s == %.5s\n", regexp->dbuf.buf + regexp->cursor,
+	ft_fprintf(2, "Comparing : %.5s == %.5s\n", regexp->dbuf.buf + regexp->cursor,
 	text->dbuf.buf + text->cursor);
 	if (inc)
 	{

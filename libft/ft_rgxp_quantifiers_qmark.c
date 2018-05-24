@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 17:09:57 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/24 18:30:12 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:29:33 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static long	ft_rgxp_qmark_local(t_cdbuf *lrgxp, t_cdbuf *ltext,
 	unsigned int	i;
 
 	i = 0;
-	ft_printf("Quantifier : %c (Lazy : %s)\n", '?', "Yes");
+	ft_fprintf(2, "Quantifier : %c (Lazy : %s)\n", '?', "Yes");
 	if (ltext->cursor < ltext->dbuf.cursor &&
 		((t_rgxp_char_f)pfunc)(lrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
 		i++;

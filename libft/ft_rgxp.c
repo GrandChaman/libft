@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/24 16:59:26 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 21:34:58 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, t_rgxp_char_f *pfunc, c
 	int				ret;
 
 	ret = 0;
-	ft_printf("At : %s\n", text->dbuf.buf + text->cursor);
+	ft_fprintf(2, "At : %s\n", text->dbuf.buf + text->cursor);
 	tmp = ft_rgxp_get_pfunc(*rgxp);
 	if (tmp)
 	{
@@ -75,5 +75,5 @@ int						ft_rgxp(char *regexp_ori, char *text_ori,
 		text.cursor++;
 	}
 	ft_rgxp_unload(&regexp, &text);
-	return (res);
+	return (res < 0 ? res : 0);
 }

@@ -9,9 +9,11 @@ eval $1
 last_val=$?
 if [ $last_val -ne 0 ]
 then
-	echo -e "==> $1" $RED "\\KO " "$NC"
+	echo -n "==> $1"
+	echo -e $RED "  KO " "$NC"
 	exit $last_val
 else
-	echo -e "==> $1" $GREEN "\\OK " "$NC"
+	echo -n "==> $1"
+	echo -e $GREEN "  OK " "$NC"
 fi
 }

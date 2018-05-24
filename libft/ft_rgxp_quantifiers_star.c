@@ -6,7 +6,7 @@
 /*   By: fle-roy <fle-roy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 17:08:46 by fle-roy           #+#    #+#             */
-/*   Updated: 2018/05/24 17:08:55 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:30:12 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ static long	ft_rgxp_star_local(t_cdbuf *lrgxp, t_cdbuf *ltext,
 			.dbuf = lrgxp->dbuf};
 		npfunc = ft_rgxp_get_pfunc(nrgxp);
 	}
-	ft_printf("Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
+	ft_fprintf(2, "Quantifier : %c (Lazy : %s)\n", '*', lazy ? "Yes" : "No");
 	while (ltext->cursor < ltext->dbuf.cursor &&
 		((t_rgxp_char_f)pfunc)(lrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
 	{
 		if (npfunc && npfunc(&nrgxp, ltext, pfunc, RGXP_NO_INC) > 0)
-				lres = ltext->cursor;
-		if (!lazy)
-			ltext->cursor++;
-		else
+			lres = ltext->cursor;
+		ltext->cursor++;
+		if ((lazy && lres > 0) || (lazy && !npfunc))
 			break ;
 	}
 	return (lres);
@@ -59,9 +58,7 @@ int		ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc)
 	if (inc)
 	{
 		rgxp->cursor += 1 + lazy;
-		ft_printf("Before : %d - %s\n", text->cursor, text->dbuf.buf + text->cursor);
 		text->cursor += (i < 0 ? ltext.cursor : i) - text->cursor;
-		ft_printf("After : %d - %s\n", text->cursor, text->dbuf.buf + text->cursor);
 	}
 	return (1);
 }
