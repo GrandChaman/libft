@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 23:34:29 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/23 17:57:27 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 16:59:26 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int						ft_rgxp_routine(t_cdbuf regexp, t_cdbuf text,
 	t_str_piece		tmp;
 
 	regexp.cursor = 0;
-	pfunc = NULL;
+	pfunc = ft_rgxp_dot;
 	(void)tmp_res;
 	ori_cursor = text.cursor;
 	while (regexp.cursor < regexp.dbuf.cursor &&

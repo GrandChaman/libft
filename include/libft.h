@@ -6,7 +6,7 @@
 /*   By: bluff <bluff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 20:24:12 by bluff             #+#    #+#             */
-/*   Updated: 2018/05/23 17:46:55 by fle-roy          ###   ########.fr       */
+/*   Updated: 2018/05/24 17:48:03 by fle-roy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int						ft_rgxp_star(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_plus(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_qmark(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_backtrack(t_cdbuf *rgxp, t_cdbuf *text, t_rgxp_char_f *pfunc, char inc);
-int						ft_rgxp_brace(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
+int						ft_rgxp_braces(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_bckslash_d(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_bckslash_s(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 int						ft_rgxp_bckslash_w(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
@@ -122,38 +122,38 @@ int						ft_rgxp_dot(t_cdbuf *rgxp, t_cdbuf *text, void *pfunc, char inc);
 # define E_RGXP_QUANTIFIER_ON_NULL -6
 
 static t_rgxp_char		g_rgxp_char_list[] = {
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
-	{NULL, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
+	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
@@ -245,7 +245,7 @@ static t_rgxp_char		g_rgxp_char_list[] = {
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
-	{ft_rgxp_brace, ft_rgxp_normal_cmp, 1},
+	{ft_rgxp_braces, ft_rgxp_normal_cmp, 1},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},
 	{ft_rgxp_normal_cmp, NULL, 0},

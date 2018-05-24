@@ -6,7 +6,7 @@
 #    By: bluff <bluff@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/19 19:26:33 by bluff             #+#    #+#              #
-#    Updated: 2018/05/23 17:40:25 by fle-roy          ###   ########.fr        #
+#    Updated: 2018/05/24 17:43:20 by fle-roy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ ft_haschar.c ft_free.c ft_strsplit_multi.c ft_lstdestroy.c \
 dbuf_init.c dbuf_append.c dbuf_clear.c dbuf_insert.c dbuf_remove.c \
 dbuf_destroy.c dbuf_substract.c dbuf_print.c ft_strndup.c ft_stralike.c \
 ft_strtrim.c ft_rgxp.c ft_rgxp_load.c ft_rgxp_unload.c ft_rgxp_normal_cmp.c \
-ft_rgxp_quantifiers.c ft_rgxp_type.c ft_isquantifier.c)
+ft_rgxp_quantifiers.c ft_rgxp_type.c ft_rgxp_quantifiers_braces.c \
+ft_rgxp_quantifiers_plus.c ft_rgxp_quantifiers_qmark.c \
+ft_rgxp_quantifiers_star.c)
 
 SRC_PRINTF = $(addprefix $(PRINTF_DIR)/, ft_printf_routine.c ft_printf.c \
 		ft_printf_utils.c ft_printf_string.c ft_printf_parser.c \
